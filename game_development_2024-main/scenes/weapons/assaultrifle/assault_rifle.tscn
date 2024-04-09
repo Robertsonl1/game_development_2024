@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://cwwmbxblg3tgu"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_6ane2"]
+size = Vector3(0.025, 0.156, 0.062)
+
+[sub_resource type="BoxMesh" id="BoxMesh_db04x"]
+size = Vector3(0.023, 0.092, 0.04)
+
+[sub_resource type="BoxMesh" id="BoxMesh_250oj"]
+size = Vector3(0.036, 0.053, 0.344)
+
+[node name="AssaultRifle" type="Node3D"]
+
+[node name="Root" type="Node3D" parent="."]
+
+[node name="Anchor" type="Node3D" parent="Root"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+
+[node name="Body" type="Node3D" parent="Root/Anchor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Root/Anchor/Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0783667, 0.0466712)
+mesh = SubResource("BoxMesh_6ane2")
+skeleton = NodePath("../../../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Root/Anchor/Body"]
+transform = Transform3D(1, 0, 0, 0, 0.882792, -0.469764, 0, 0.469764, 0.882792, 0, -0.0374138, -0.115158)
+mesh = SubResource("BoxMesh_db04x")
+skeleton = NodePath("../../../..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Root/Anchor/Body"]
+mesh = SubResource("BoxMesh_250oj")
+skeleton = NodePath("../../../..")

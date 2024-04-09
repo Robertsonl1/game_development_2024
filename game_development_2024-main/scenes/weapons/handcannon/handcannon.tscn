@@ -1,0 +1,85 @@
+[gd_scene load_steps=7 format=3 uid="uid://dp2532qasylyo"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_00why"]
+size = Vector3(0.023, 0.03, 0.118)
+
+[sub_resource type="BoxMesh" id="BoxMesh_n23jv"]
+size = Vector3(0.019, 0.064, 0.03)
+
+[sub_resource type="Animation" id="Animation_i0uqt"]
+resource_name = "Equip"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Root/Anchor:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1.5708, 0, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_53i5d"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Root/Anchor:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.5708, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_6epa4"]
+resource_name = "Deequip"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Root/Anchor:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1.5708, 0, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_07528"]
+_data = {
+"Deequip": SubResource("Animation_6epa4"),
+"Equip": SubResource("Animation_i0uqt"),
+"RESET": SubResource("Animation_53i5d")
+}
+
+[node name="HandCannon" type="Node3D"]
+
+[node name="Root" type="Node3D" parent="."]
+
+[node name="Anchor" type="Node3D" parent="Root"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.5)
+
+[node name="Body" type="Node3D" parent="Root/Anchor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Root/Anchor/Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0164965, 0.00592537)
+mesh = SubResource("BoxMesh_00why")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Root/Anchor/Body"]
+transform = Transform3D(1, 0, 0, 0, 0.992371, -0.12329, 0, 0.12329, 0.992371, 0, -0.0156619, -0.028816)
+mesh = SubResource("BoxMesh_n23jv")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Root"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_07528")
+}
