@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://bie5kfrux1mbo"]
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 0
+offset_top = 891.0
+offset_right = 510.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 0.588235)
+
+[node name="HealthUI" type="Label" parent="Background"]
+layout_mode = 0
+offset_left = 267.0
+offset_top = 35.0
+offset_right = 458.0
+offset_bottom = 87.0
+theme_override_font_sizes/font_size = 25
+text = "Health: 100"
+
+[node name="HealthUI2" type="Label" parent="Background"]
+layout_mode = 0
+offset_left = 266.0
+offset_top = 112.0
+offset_right = 457.0
+offset_bottom = 164.0
+theme_override_font_sizes/font_size = 25
+text = "Handcannon: 7/28"
+
+[node name="Display" type="ColorRect" parent="Background"]
+layout_mode = 0
+offset_right = 189.0
+offset_bottom = 189.0
+color = Color(0, 0, 0, 0.588235)
+
+[node name="Weaponslot" type="Label" parent="Background/Display"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 1.0
+offset_right = 62.0
+offset_bottom = 46.0
+theme_override_font_sizes/font_size = 30
+text = "1"
