@@ -1,34 +1,93 @@
-[gd_scene load_steps=4 format=3 uid="uid://cwwmbxblg3tgu"]
+[gd_scene load_steps=8 format=3 uid="uid://cwwmbxblg3tgu"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_6ane2"]
-size = Vector3(0.025, 0.156, 0.062)
+size = Vector3(0.03, 0.22, 0.099)
 
 [sub_resource type="BoxMesh" id="BoxMesh_db04x"]
-size = Vector3(0.023, 0.092, 0.04)
+size = Vector3(0.032, 0.148, 0.051)
 
 [sub_resource type="BoxMesh" id="BoxMesh_250oj"]
-size = Vector3(0.036, 0.053, 0.344)
+size = Vector3(0.076, 0.09, 0.478)
+
+[sub_resource type="Animation" id="Animation_ecdyw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Root/Anchor:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.5708, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_da6tu"]
+resource_name = "deequip"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Root/Anchor:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-1.5708, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_8pbj5"]
+resource_name = "equip"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Root/Anchor:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-1.5708, 0, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i1cnj"]
+_data = {
+"RESET": SubResource("Animation_ecdyw"),
+"deequip": SubResource("Animation_da6tu"),
+"equip": SubResource("Animation_8pbj5")
+}
 
 [node name="AssaultRifle" type="Node3D"]
 
 [node name="Root" type="Node3D" parent="."]
 
 [node name="Anchor" type="Node3D" parent="Root"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
-
-[node name="Body" type="Node3D" parent="Root/Anchor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
 
+[node name="Body" type="Node3D" parent="Root/Anchor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="Root/Anchor/Body"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0783667, 0.0466712)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.129683, -0.100811)
 mesh = SubResource("BoxMesh_6ane2")
 skeleton = NodePath("../../../..")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Root/Anchor/Body"]
-transform = Transform3D(1, 0, 0, 0, 0.882792, -0.469764, 0, 0.469764, 0.882792, 0, -0.0374138, -0.115158)
+transform = Transform3D(1, 0, 0, 0, 0.896957, 0.442117, 0, -0.442117, 0.896957, 0, -0.0807101, 0.195126)
 mesh = SubResource("BoxMesh_db04x")
 skeleton = NodePath("../../../..")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Root/Anchor/Body"]
 mesh = SubResource("BoxMesh_250oj")
 skeleton = NodePath("../../../..")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_i1cnj")
+}

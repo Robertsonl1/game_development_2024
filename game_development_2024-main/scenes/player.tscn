@@ -1,6 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://bwnkle17ik1nl"]
+[gd_scene load_steps=9 format=3 uid="uid://bwnkle17ik1nl"]
 
 [ext_resource type="Script" path="res://scripts/characters/player/player.gd" id="1_pcdq5"]
+[ext_resource type="Script" path="res://scenes/weapons/weapon_manager.gd" id="2_3t5l0"]
+[ext_resource type="PackedScene" uid="uid://dp2532qasylyo" path="res://scenes/weapons/handcannon/handcannon.tscn" id="2_24c3m"]
+[ext_resource type="PackedScene" uid="uid://cwwmbxblg3tgu" path="res://scenes/weapons/assaultrifle/assault_rifle.tscn" id="3_1sxk0"]
+[ext_resource type="PackedScene" uid="uid://b64qfavu0pi1w" path="res://scenes/weapons/unarmed/unarmed.tscn" id="4_jfo8s"]
+[ext_resource type="PackedScene" uid="uid://bie5kfrux1mbo" path="res://scenes/ui/hud/hud.tscn" id="5_7jv1j"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_k4s4p"]
 
@@ -25,3 +30,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.155617, 0)
 [node name="GrappleCast" type="RayCast3D" parent="Head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.156, 0)
 target_position = Vector3(0, 0, -25)
+
+[node name="Hand" type="Node3D" parent="Head"]
+script = ExtResource("2_3t5l0")
+
+[node name="HandCannon" parent="Head/Hand" instance=ExtResource("2_24c3m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.196, -0.104, -0.309)
+
+[node name="AssaultRifle" parent="Head/Hand" instance=ExtResource("3_1sxk0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.151, 0.002, -0.48)
+visible = false
+
+[node name="Unarmed" parent="Head/Hand" instance=ExtResource("4_jfo8s")]
+
+[node name="HUD" parent="." instance=ExtResource("5_7jv1j")]
