@@ -33,3 +33,17 @@ func _ready():
 		"Primary" : $Handcannon,
 		"Secondary" : $AssaultRifle
 	}
+	
+	# Initialize references for each weapon
+	for w in weapons:
+		if weapons[w] != null:
+			weapons[w].weapon_manager = self
+			weapons[w].player = owner
+			weapons[w].visible = false
+
+
+
+func change_weapon(new_weapon_slot):
+	
+	if new_weapon_slot == current_weapon_slot:
+		current_weapon.update_ammo() # Referesh

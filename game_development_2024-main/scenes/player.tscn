@@ -36,6 +36,9 @@ script = ExtResource("2_3t5l0")
 
 [node name="HandCannon" parent="Head/Hand" instance=ExtResource("2_24c3m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.196, -0.104, -0.309)
+weapon_name = "Weapon"
+equip_speed = 1.0
+deequip_speed = 1.0
 
 [node name="AssaultRifle" parent="Head/Hand" instance=ExtResource("3_1sxk0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.151, 0.002, -0.48)

@@ -1,4 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://cwwmbxblg3tgu"]
+[gd_scene load_steps=9 format=3 uid="uid://cwwmbxblg3tgu"]
+
+[ext_resource type="Script" path="res://scenes/weapons/assaultrifle/assault_rifle.gd" id="1_n66c2"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_6ane2"]
 size = Vector3(0.03, 0.22, 0.099)
@@ -64,11 +66,12 @@ _data = {
 }
 
 [node name="AssaultRifle" type="Node3D"]
+script = ExtResource("1_n66c2")
 
 [node name="Root" type="Node3D" parent="."]
 
 [node name="Anchor" type="Node3D" parent="Root"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
+transform = Transform3D(1, 0, 0, 0, -3.61999e-06, 1, 0, -1, -3.61999e-06, 0, 0, 0.5)
 
 [node name="Body" type="Node3D" parent="Root/Anchor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)

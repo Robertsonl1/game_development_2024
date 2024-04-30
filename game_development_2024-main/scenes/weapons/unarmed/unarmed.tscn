@@ -1,3 +1,6 @@
-[gd_scene format=3 uid="uid://b64qfavu0pi1w"]
+[gd_scene load_steps=2 format=3 uid="uid://b64qfavu0pi1w"]
+
+[ext_resource type="Script" path="res://scenes/weapons/unarmed/unarmed.gd" id="1_34lws"]
 
 [node name="Unarmed" type="Node3D"]
+script = ExtResource("1_34lws")

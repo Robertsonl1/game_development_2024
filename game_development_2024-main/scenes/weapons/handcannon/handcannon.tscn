@@ -1,4 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://dp2532qasylyo"]
+[gd_scene load_steps=8 format=3 uid="uid://dp2532qasylyo"]
+
+[ext_resource type="Script" path="res://scenes/weapons/handcannon/handcannon.gd" id="1_fm4o5"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_00why"]
 size = Vector3(0.073, 0.082, 0.376)
@@ -61,6 +63,10 @@ _data = {
 }
 
 [node name="HandCannon" type="Node3D"]
+script = ExtResource("1_fm4o5")
+weapon_name = null
+equip_speed = null
+deequip_speed = null
 
 [node name="Root" type="Node3D" parent="."]
 
