@@ -23,8 +23,28 @@ var is_reloading = false
 # Equip/DeEquip cycle
 func equip():
 	animation_player.play("Equip", -1.0, equip_speed)
+	update_ammo()
 
 func deequip():
-	animation_player.play ("Deequip, -1.0", deequip_speed)
+	animation_player.play ("Deequip", -1.0, deequip_speed)
 	
 func is_equip_finished():
+	if is_equipped:
+		return true
+	else:
+		return false
+
+func is_unequip_finished():
+	if is_equipped:
+		return false
+	else:
+		return true
+		
+# Update Ammo
+func update_ammo(action = "Refresh"):
+	
+	var weapon_data = {
+		"Name" : weapon_name
+	}
+	
+	#weapon_manager.update_hud(weapon_data)
