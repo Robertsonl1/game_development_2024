@@ -67,6 +67,7 @@ _data = {
 
 [node name="AssaultRifle" type="Node3D"]
 script = ExtResource("1_n66c2")
+weapon_name = "AssaultRifle"
 
 [node name="Root" type="Node3D" parent="."]
 

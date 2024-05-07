@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://bie5kfrux1mbo"]
+[gd_scene load_steps=2 format=3 uid="uid://bie5kfrux1mbo"]
+
+[ext_resource type="Script" path="res://scenes/ui/hud/hud.gd" id="1_ntgsk"]
 
 [node name="HUD" type="Control"]
 layout_mode = 3
@@ -7,6 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_ntgsk")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 0
@@ -24,7 +27,7 @@ offset_bottom = 87.0
 theme_override_font_sizes/font_size = 25
 text = "Health: 100"
 
-[node name="HealthUI2" type="Label" parent="Background"]
+[node name="WeaponUI" type="Label" parent="Background"]
 layout_mode = 0
 offset_left = 266.0
 offset_top = 112.0

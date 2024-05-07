@@ -64,9 +64,7 @@ _data = {
 
 [node name="HandCannon" type="Node3D"]
 script = ExtResource("1_fm4o5")
-weapon_name = null
-equip_speed = null
-deequip_speed = null
+weapon_name = "Handcannon"
 
 [node name="Root" type="Node3D" parent="."]
 

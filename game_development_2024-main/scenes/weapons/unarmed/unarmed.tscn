@@ -4,3 +4,4 @@
 
 [node name="Unarmed" type="Node3D"]
 script = ExtResource("1_34lws")
+weapon_name = "Unarmed"

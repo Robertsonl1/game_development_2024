@@ -27,6 +27,8 @@ var gravity_vec = Vector3()
 @onready var camera: Camera3D = $Head/Camera3D
 @onready var grapplecast: RayCast3D = $Head/GrappleCast
 
+@onready var weapon_manager = $Head/Hand
+
 func _ready():
 	# Captures the mouse so it does not go off the end of the screen
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -44,6 +46,8 @@ func grapple():
 			pass
 
 func _physics_process(_delta):
+	
+	process_weapons()
 	
 	# Stops all vertical momentum when the player's head hits a ceiling
 	if is_on_ceiling():
@@ -73,3 +77,16 @@ func _physics_process(_delta):
 	velocity = movement
 	
 	move_and_slide()
+
+func process_weapons():
+	if Input.is_action_just_pressed("empty"):
+		weapon_manager.change_weapon("Empty")
+		
+	if Input.is_action_just_pressed("primary"):
+		weapon_manager.change_weapon("Primary")
+		
+	if Input.is_action_just_pressed("secondary"):
+		weapon_manager.change_weapon("Secondary")
+
+
+

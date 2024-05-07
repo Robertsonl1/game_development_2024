@@ -15,9 +15,10 @@ func is_unequip_finished():
 	return true
 		
 # Update Ammo
-func update_ammo(action = "Refresh"):
+func update_ammo(_action = "Refresh"):
 	
 	var weapon_data = {
 		"Name" : weapon_name
 	}
 	
+	weapon_manager.update_hud(weapon_data)
