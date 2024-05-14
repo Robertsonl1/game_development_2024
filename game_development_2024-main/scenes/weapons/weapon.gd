@@ -4,42 +4,30 @@ class_name Weapon
 # References
 var weapon_manager = null
 var player = null
-var animation_player
 
-# Weapon states
+# Weapon States
 var is_equipped = false
-var is_firing = false
-var is_reloading = false
 
-# Weapon parameters
+# Weapon Parameters
 @export var weapon_name = "Weapon"
 
-# Optional
-@export var equip_speed = 1.0
-@export var deequip_speed = 1.0
 
-
-
-# Equip/DeEquip cycle
+# Equip/Unequip Cycle
 func equip():
-	animation_player.play("Equip", -1.0, equip_speed)
-	#update_ammo()
+	pass
 
-func deequip():
-	animation_player.play ("Deequip", -1.0, deequip_speed)
-	
+func unequip():
+	pass
+
 func is_equip_finished():
-	if is_equipped:
-		return true
-	else:
-		return false
+	return true
 
 func is_unequip_finished():
-	if is_equipped:
-		return false
-	else:
-		return true
-		
+	return true
+
+
+
+
 # Update Ammo
 func update_ammo(_action = "Refresh"):
 	

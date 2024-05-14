@@ -24,8 +24,8 @@ func _ready():
 	
 	all_weapons = {
 		"Unarmed" : preload("res://scenes/weapons/unarmed/unarmed.tscn"),
-		"Handcannon" : preload("res://scenes/weapons/handcannon/handcannon.tscn"),
-		"AssaultRifle" : preload("res://scenes/weapons/assaultrifle/assault_rifle.tscn")
+		"Handcannon" : preload("res://scenes/weapons/armed/handcannon/handcannon.tscn"),
+		"AssaultRifle" : preload("res://scenes/weapons/armed/assaultrifle/assault_rifle.tscn")
 	}
 
 	weapons = {
