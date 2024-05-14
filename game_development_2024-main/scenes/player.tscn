@@ -35,6 +35,7 @@ target_position = Vector3(0, 0, -25)
 script = ExtResource("2_3t5l0")
 
 [node name="HandCannon" parent="Head/Hand" instance=ExtResource("2_24c3m")]
+visible = false
 
 [node name="AssaultRifle" parent="Head/Hand" instance=ExtResource("3_1sxk0")]
 

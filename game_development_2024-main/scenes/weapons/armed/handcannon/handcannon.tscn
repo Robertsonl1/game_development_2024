@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://dp2532qasylyo"]
+[gd_scene load_steps=11 format=3 uid="uid://dp2532qasylyo"]
 
 [ext_resource type="Script" path="res://scenes/weapons/armed/handcannon/handcannon.gd" id="1_fn51r"]
+[ext_resource type="PackedScene" uid="uid://bmfmuai322siw" path="res://scenes/weapons/muzzle_flash.tscn" id="2_jig4l"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_00why"]
 size = Vector3(0.073, 0.082, 0.376)
@@ -21,6 +22,30 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Root/Anchor/Body:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Root/Anchor/Body:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, -0.5)]
 }
 
 [sub_resource type="Animation" id="Animation_sk1e2"]
@@ -55,11 +80,71 @@ tracks/0/keys = {
 "values": [Vector3(-1.5708, 0, 0), Vector3(0, 0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_j4srp"]
+resource_name = "fire"
+length = 0.1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Root/Anchor/Body:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.03, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(1.01178, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Root/Anchor/Body:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.03, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, -0.5), Vector3(0, 0.139818, -0.410257), Vector3(0, 0, -0.5)]
+}
+
+[sub_resource type="Animation" id="Animation_gta05"]
+resource_name = "reload"
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Root/Anchor/Body:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.25, 0.3, 0.6, 0.7, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.227203, 0.301083, -0.744337), Vector3(-0.138486, 0.376515, 1.18484), Vector3(-0.112978, 0.194836, 1.11688), Vector3(0, 0, -2.00383), Vector3(0, 0, -2.00383), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Root/Anchor/Body:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.25, 0.3, 0.6, 0.7, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, -0.5), Vector3(-0.118105, 0.029061, -0.556024), Vector3(0.22404, 0, -0.559268), Vector3(0.231667, 0.0130464, -0.521576), Vector3(-0.230586, 0.136397, -0.533717), Vector3(-0.230586, 0.136397, -0.533717), Vector3(0, 0, -0.5)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vdmiv"]
 _data = {
 "RESET": SubResource("Animation_dp3oj"),
 "deequip": SubResource("Animation_sk1e2"),
-"equip": SubResource("Animation_wig5a")
+"equip": SubResource("Animation_wig5a"),
+"fire": SubResource("Animation_j4srp"),
+"reload": SubResource("Animation_gta05")
 }
 
 [node name="HandCannon" type="Node3D"]
@@ -72,7 +157,7 @@ weapon_name = "Handcannon"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
 
 [node name="Body" type="Node3D" parent="Root/Anchor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Root/Anchor/Body"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.2988e-09, 0.106079, -0.100441)
@@ -81,6 +166,9 @@ mesh = SubResource("BoxMesh_00why")
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Root/Anchor/Body"]
 transform = Transform3D(1, 3.22608e-08, 2.01356e-09, -3.17664e-08, 0.969339, 0.24573, 5.97562e-09, -0.24573, 0.969339, -6.409e-09, 0.0104121, 0.0444944)
 mesh = SubResource("BoxMesh_n23jv")
+
+[node name="MuzzleFlash" parent="Root/Anchor/Body" instance=ExtResource("2_jig4l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.106941, -0.326308)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
