@@ -9,6 +9,17 @@ var is_firing = false
 var is_reloading = false
 
 # Weapon Parameters
+@export var damage = 10
+@export var firrate = 1.0
+
+@export var magammo = 15
+@export var reserveammo = 30
+@onready var magsize = magammo
+
+
+# Effects
+@export(PackedScene) var impact_effect
+
 
 # Optional
 @export var equip_speed = 1.0
