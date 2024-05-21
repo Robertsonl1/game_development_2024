@@ -18,7 +18,7 @@ var is_reloading = false
 
 
 # Effects
-@export(PackedScene) var impact_effect
+@export var impact_effect: PackedScene
 
 
 # Optional
@@ -47,15 +47,12 @@ func is_unequip_finished():
 		return true
 
 
-
 # Show/Hide Weapon
 func show_weapon():
 	visible = true
 
 func hide_weapon():
 	visible = false
-
-
 
 # Animation Finished
 func on_animation_finish(anim_name):
@@ -65,13 +62,31 @@ func on_animation_finish(anim_name):
 		"Equip":
 			is_equipped = true
 
-
-
 # Update Ammo
-func update_ammo(_action = "Refresh"):
+func update_ammo(_action = "Refresh", additionalammo = 0):
 	
+	match action:
+		"consume":
+			magammo -= 1
+			
+		"reload":
+			var ammo_needed = magsize - magammo
+			
+			if reserveammo > ammo_needed:
+				magammo = magsize
+				reserveammo -= ammo_needed
+			else:
+				magammo += reserveammo
+				reserveammo = 0
+				
+		"add":
+			reserveammo += additionalammo
+			
 	var weapon_data = {
-		"Name" : weapon_name
+		"Name" : weapon_name,
+		"Image" : weapon_image,
+		"Ammo" : str(magammo),
+		"ReserveAmmo" : str(reserveammo)
 	}
 	
 	weapon_manager.update_hud(weapon_data)
