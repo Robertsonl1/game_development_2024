@@ -108,6 +108,17 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector3(0, 0, -0.5), Vector3(0, 0.139818, -0.410257), Vector3(0, 0, -0.5)]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
 
 [sub_resource type="Animation" id="Animation_gta05"]
 resource_name = "reload"

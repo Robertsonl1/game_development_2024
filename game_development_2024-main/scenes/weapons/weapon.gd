@@ -4,13 +4,14 @@ class_name Weapon
 # References
 var weapon_manager = null
 var player = null
+var ray = null
 
 # Weapon States
 var is_equipped = false
 
 # Weapon Parameters
 @export var weapon_name = "Weapon"
-@export var weapon_image = null: Texture
+@export(Texture) var weapon_image = null
 
 
 # Equip/Unequip Cycle

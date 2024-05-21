@@ -21,6 +21,7 @@ var deequiped_weapon = false
 func _ready():
 	
 	hud = owner.get_node("HUD")
+	get_parent().get_node("Camera3D/RayCast3D").add_exeption(owner) # Adds exeption of player to the shooting raycast
 	
 	all_weapons = {
 		"Unarmed" : preload("res://scenes/weapons/unarmed/unarmed.tscn"),
@@ -39,6 +40,7 @@ func _ready():
 		if weapons[w] != null:
 			weapons[w].weapon_manager = self
 			weapons[w].player = owner
+			weapons[w].ray = get_parent().get_node("Camera3D/RayCast3D")
 			weapons[w].visible = false
 	
 	# Set current weapon to unarmed
