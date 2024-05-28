@@ -11,7 +11,7 @@ var is_equipped = false
 
 # Weapon Parameters
 @export var weapon_name = "Weapon"
-@export(Texture) var weapon_image = null
+@export var weapon_image: Texture
 
 
 # Equip/Unequip Cycle

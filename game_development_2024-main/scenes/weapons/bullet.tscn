@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://ed772tp2kwed"]
+
+[ext_resource type="Script" path="res://scenes/weapons/bullet.gd" id="1_yfbrn"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_3wosk"]
+size = Vector3(0.01, 0.01, 0.1)
+
+[node name="MeshInstance3D" type="MeshInstance3D"]
+mesh = SubResource("BoxMesh_3wosk")
+script = ExtResource("1_yfbrn")

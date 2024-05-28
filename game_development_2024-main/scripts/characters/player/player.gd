@@ -87,6 +87,13 @@ func process_weapons():
 		
 	if Input.is_action_just_pressed("secondary"):
 		weapon_manager.change_weapon("Secondary")
+		
+	# Firing
+	if Input.is_action_just_pressed("fire"):
+		weapon_manager.fire()
+	if Input.is_action_just_released("fire"):
+		weapon_manager.fire_stop()
 
-
-
+	# Reloading
+	if Input.is_action_just_pressed("reload"):
+		weapon_manager.reload()

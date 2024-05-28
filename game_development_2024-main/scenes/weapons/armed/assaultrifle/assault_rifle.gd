@@ -1,7 +1,7 @@
 extends Armed
 
 
-func _ready():
+func ready():
 	player.connect("animation_finish", on_animation_finish)
 
 

@@ -31,12 +31,12 @@ var is_reloading = false
 
 # Fire cycle
 func fire():
-	if not is_reloading():
+	if not is_reloading:
 		if magammo > 0:
 			if not is_firing:
 				is_firing = true
 				animation_player.get_animation("Fire").loop = true
-				animation_play.play("Fire", -1.0, firerate )
+				animation_player.play("Fire", -1.0, firerate )
 			
 			return
 		
@@ -110,7 +110,7 @@ func on_animation_finish(anim_name):
 			update_ammo("reload")
 
 # Update Ammo
-func update_ammo(_action = "Refresh", additionalammo = 0):
+func update_ammo(action = "Refresh", additionalammo = 0):
 	
 	match action:
 		"consume":

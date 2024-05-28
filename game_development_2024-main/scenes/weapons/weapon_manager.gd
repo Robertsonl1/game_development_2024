@@ -16,7 +16,7 @@ var current_weapon_slot = "Empty" # The current weapon slot
 var changing_weapon = false
 var deequiped_weapon = false
 
-
+var weapon_index = 0 # For switching weapons through mouse wheel
 
 func _ready():
 	
@@ -93,6 +93,52 @@ func change_weapon(new_weapon_slot):
 		
 	
 	set_process(true)
+
+
+# Scroll weapon change
+func update_weapon_index():
+	match current_weapon_slot:
+		"Empty":
+			weapon_index = 0
+		"Primary":
+			weapon_index = 1
+		"Secondary":
+			weapon_index = 2
+
+func next_weapon():
+	weapon_index += 1
+	if weapon_index >= weapons.size():
+		weapon_index = 0
+	
+	change_weapon(weapons.keys()[weapon_index])
+
+func previous_weapon():
+	weapon_index -= 1
+	if weapon_index < 0:
+		weapon_index = weapons.size() - 1
+	
+	change_weapon(weapons.keys()[weapon_index])
+
+
+# Firing and Reloading
+func fire():
+	if not changing_weapon:
+		current_weapon.fire()
+
+func fire_stop():
+	current_weapon.fire_stop()
+
+func reload():
+	if not changing_weapon:
+		current_weapon.reload()
+
+# Ammo Pickup
+func add_ammo(amount):
+	if current_weapon == null || current_weapon.name == "Unarmed":
+		return false
+	
+	current_weapon.update_ammo("add", amount)
+	return true
 
 
 # Update HUD
