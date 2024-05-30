@@ -43,13 +43,20 @@ offset_bottom = 189.0
 color = Color(0, 0, 0, 0.588235)
 
 [node name="Weaponslot" type="Label" parent="Background/Display"]
-layout_mode = 0
-offset_left = 13.0
-offset_top = 1.0
-offset_right = 62.0
-offset_bottom = 46.0
-theme_override_font_sizes/font_size = 30
+layout_mode = 1
+offset_right = 32.0
+offset_bottom = 29.0
+theme_override_font_sizes/font_size = 16
 text = "1"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Background/Display"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Crosshair" type="ColorRect" parent="."]
 layout_mode = 1

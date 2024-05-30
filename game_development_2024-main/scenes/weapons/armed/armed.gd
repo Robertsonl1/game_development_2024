@@ -9,19 +9,17 @@ var is_firing = false
 var is_reloading = false
 
 # Weapon Parameters
+@export var ammo_in_mag = 15
+@export var reserve_ammo = 30
+@onready var mag_size = ammo_in_mag
+
 @export var damage = 10
-@export var firerate = 1.0
-
-@export var magammo = 15
-@export var reserveammo = 30
-@onready var magsize = magammo
-
+@export var fire_rate = 1.0
 
 # Effects
 @export var impact_effect: PackedScene
 @export var muzzle_flash_path: NodePath
 @onready var muzzle_flash = get_node(muzzle_flash_path)
-
 
 # Optional
 @export var equip_speed = 1.0
@@ -29,14 +27,15 @@ var is_reloading = false
 @export var reload_speed = 1.0
 
 
-# Fire cycle
+
+# Fire Cycle
 func fire():
 	if not is_reloading:
-		if magammo > 0:
+		if ammo_in_mag > 0:
 			if not is_firing:
 				is_firing = true
 				animation_player.get_animation("Fire").loop = true
-				animation_player.play("Fire", -1.0, firerate )
+				animation_player.play("Fire", -1.0, fire_rate)
 			
 			return
 		
@@ -45,11 +44,10 @@ func fire():
 
 func fire_stop():
 	is_firing = false
-	animation_player.ger_animation("Fire").loop = false
+	animation_player.get_animation("Fire").loop = false
 
 
-# Will be called from the animation track
-func fire_bullet():
+func fire_bullet():    # Will be called from the animation track
 	muzzle_flash.emitting = true
 	update_ammo("consume")
 	
@@ -58,15 +56,19 @@ func fire_bullet():
 	if ray.is_colliding():
 		var impact = Global.instantiate_node(impact_effect, ray.get_collision_point())
 		impact.emitting = true
-	
+
+
+
 
 # Reload
 func reload():
-	if magammo < magsize and reserveammo > 0:
+	if ammo_in_mag < mag_size and reserve_ammo > 0:
 		is_firing = false
 		
 		animation_player.play("Reload", -1.0, reload_speed)
 		is_reloading = true
+
+
 
 
 
@@ -91,12 +93,15 @@ func is_unequip_finished():
 		return true
 
 
+
 # Show/Hide Weapon
 func show_weapon():
 	visible = true
 
 func hide_weapon():
 	visible = false
+
+
 
 # Animation Finished
 func on_animation_finish(anim_name):
@@ -109,31 +114,34 @@ func on_animation_finish(anim_name):
 			is_reloading = false
 			update_ammo("reload")
 
+
+
 # Update Ammo
-func update_ammo(action = "Refresh", additionalammo = 0):
+func update_ammo(action = "Refresh", additional_ammo = 0):
 	
 	match action:
 		"consume":
-			magammo -= 1
-			
+			ammo_in_mag -= 1
+		
 		"reload":
-			var ammo_needed = magsize - magammo
+			var ammo_needed = mag_size - ammo_in_mag
 			
-			if reserveammo > ammo_needed:
-				magammo = magsize
-				reserveammo -= ammo_needed
+			if reserve_ammo > ammo_needed:
+				ammo_in_mag = mag_size
+				reserve_ammo -= ammo_needed
 			else:
-				magammo += reserveammo
-				reserveammo = 0
-				
+				ammo_in_mag += reserve_ammo
+				reserve_ammo = 0
+		
 		"add":
-			reserveammo += additionalammo
-			
+			reserve_ammo += additional_ammo
+	
+	
 	var weapon_data = {
 		"Name" : weapon_name,
 		"Image" : weapon_image,
-		"Ammo" : str(magammo),
-		"ReserveAmmo" : str(reserveammo)
+		"Ammo" : str(ammo_in_mag),
+		"ReserveAmmo" : str(reserve_ammo)
 	}
 	
 	weapon_manager.update_hud(weapon_data)

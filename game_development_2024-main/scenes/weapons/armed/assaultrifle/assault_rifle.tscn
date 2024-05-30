@@ -165,7 +165,9 @@ _data = {
 
 [node name="AssaultRifle" type="Node3D"]
 script = ExtResource("1_6egdm")
-weapon_name = "AssaultRifle"
+impact_effect = ExtResource("2_sl6ud")
+muzzle_flash_path = NodePath("Root/Anchor/Body/MuzzleFlash")
+weapon_name = "Assault Rifle"
 
 [node name="Root" type="Node3D" parent="."]
 

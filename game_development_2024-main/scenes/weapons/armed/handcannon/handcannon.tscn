@@ -162,6 +162,9 @@ _data = {
 
 [node name="HandCannon" type="Node3D"]
 script = ExtResource("1_fn51r")
+impact_effect = ExtResource("2_jig4l")
+muzzle_flash_path = NodePath("Root/Anchor/Body/MuzzleFlash")
+weapon_name = "Hand Cannon"
 
 [node name="Root" type="Node3D" parent="."]
 

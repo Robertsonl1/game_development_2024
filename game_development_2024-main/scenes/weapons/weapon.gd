@@ -11,7 +11,7 @@ var is_equipped = false
 
 # Weapon Parameters
 @export var weapon_name = "Weapon"
-@export var weapon_image: Texture
+@export var weapon_image = Texture
 
 
 # Equip/Unequip Cycle
@@ -26,7 +26,6 @@ func is_equip_finished():
 
 func is_unequip_finished():
 	return true
-
 
 
 

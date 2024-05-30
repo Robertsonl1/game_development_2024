@@ -1,8 +1,11 @@
 extends Armed
 
 
+
+
 func ready():
-	player.connect("animation_finish", on_animation_finish)
+	animation_player = $AnimationPlayer
+	animation_player.connect("animation_finished", self, "on_animation_finish")
 
 
 func on_animation_finish(anim_name):

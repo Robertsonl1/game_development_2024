@@ -1,41 +1,42 @@
 extends Node3D
 
 
-# All the weapons in the game
+# All weapons in the game
 var all_weapons = {}
 
-# Weapons the player is carrying
+# Carrying Weapons
 var weapons = {}
 
-# HUD
+#HUD
 var hud
 
 var current_weapon # Reference to the current weapon equipped
 var current_weapon_slot = "Empty" # The current weapon slot
 
 var changing_weapon = false
-var deequiped_weapon = false
+var unequipped_weapon = false
 
 var weapon_index = 0 # For switching weapons through mouse wheel
+
 
 func _ready():
 	
 	hud = owner.get_node("HUD")
-	get_parent().get_node("Camera3D/RayCast3D").add_exeption(owner) # Adds exeption of player to the shooting raycast
+	get_parent().get_node("Camera3D/RayCast3D").add_exception(owner) # Adds exception of player to the shooting raycast
 	
 	all_weapons = {
 		"Unarmed" : preload("res://scenes/weapons/unarmed/unarmed.tscn"),
-		"Handcannon" : preload("res://scenes/weapons/armed/handcannon/handcannon.tscn"),
+		"HandCannon" : preload("res://scenes/weapons/armed/handcannon/handcannon.tscn"),
 		"AssaultRifle" : preload("res://scenes/weapons/armed/assaultrifle/assault_rifle.tscn")
 	}
-
+	
 	weapons = {
 		"Empty" : $Unarmed,
-		"Primary" : $Handcannon,
+		"Primary" : $HandCannon,
 		"Secondary" : $AssaultRifle
 	}
 	
-	# Initialize references for each weapon
+	# Initialize references for each weapons
 	for w in weapons:
 		if weapons[w] != null:
 			weapons[w].weapon_manager = self
@@ -46,24 +47,24 @@ func _ready():
 	# Set current weapon to unarmed
 	current_weapon = weapons["Empty"]
 	change_weapon("Empty")
-
+	
 	# Disable process
 	set_process(false)
 
 
+
 # Process will be called when changing weapons
-func _process(_delta):
+func process(_delta):
 	
-	if deequiped_weapon == false:
-		if current_weapon.is_deequip_finished() == false:
+	if unequipped_weapon == false:
+		if current_weapon.is_unequip_finished() == false:
 			return
-			
 		
-		deequiped_weapon = true
+		unequipped_weapon = true
 		
 		current_weapon = weapons[current_weapon_slot]
 		current_weapon.equip()
-		
+	
 	if current_weapon.is_equip_finished() == false:
 		return
 	
@@ -75,24 +76,26 @@ func _process(_delta):
 func change_weapon(new_weapon_slot):
 	
 	if new_weapon_slot == current_weapon_slot:
-		current_weapon.update_ammo() # Referesh
+		current_weapon.update_ammo() # Refresh
 		return
 	
 	if weapons[new_weapon_slot] == null:
 		return
-		
+	
 	current_weapon_slot = new_weapon_slot
 	changing_weapon = true
 	
 	weapons[current_weapon_slot].update_ammo() # Updates the weapon data on UI, as soon as we change a weapon
+	update_weapon_index()
 	
 	# Change Weapons
 	if current_weapon != null:
-		deequiped_weapon = false
-		current_weapon.deequip()
-		
+		unequipped_weapon = false
+		current_weapon.unequip()
 	
 	set_process(true)
+
+
 
 
 # Scroll weapon change
@@ -107,6 +110,7 @@ func update_weapon_index():
 
 func next_weapon():
 	weapon_index += 1
+	
 	if weapon_index >= weapons.size():
 		weapon_index = 0
 	
@@ -114,10 +118,14 @@ func next_weapon():
 
 func previous_weapon():
 	weapon_index -= 1
+	
 	if weapon_index < 0:
 		weapon_index = weapons.size() - 1
 	
 	change_weapon(weapons.keys()[weapon_index])
+
+
+
 
 
 # Firing and Reloading
@@ -131,6 +139,7 @@ func fire_stop():
 func reload():
 	if not changing_weapon:
 		current_weapon.reload()
+
 
 # Ammo Pickup
 func add_ammo(amount):
