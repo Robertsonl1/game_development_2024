@@ -156,11 +156,11 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_i1cnj"]
 _data = {
+"Equip": SubResource("Animation_8pbj5"),
+"Fire": SubResource("Animation_cfoxw"),
 "RESET": SubResource("Animation_ecdyw"),
-"deequip": SubResource("Animation_da6tu"),
-"equip": SubResource("Animation_8pbj5"),
-"fire": SubResource("Animation_cfoxw"),
-"reload": SubResource("Animation_sfcip")
+"Reload": SubResource("Animation_sfcip"),
+"Unequip": SubResource("Animation_da6tu")
 }
 
 [node name="AssaultRifle" type="Node3D"]

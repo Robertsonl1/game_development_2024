@@ -153,11 +153,11 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vdmiv"]
 _data = {
+"Equip": SubResource("Animation_wig5a"),
+"Fire": SubResource("Animation_j4srp"),
 "RESET": SubResource("Animation_dp3oj"),
-"deequip": SubResource("Animation_sk1e2"),
-"equip": SubResource("Animation_wig5a"),
-"fire": SubResource("Animation_j4srp"),
-"reload": SubResource("Animation_gta05")
+"Reload": SubResource("Animation_gta05"),
+"Unequip": SubResource("Animation_sk1e2")
 }
 
 [node name="HandCannon" type="Node3D"]

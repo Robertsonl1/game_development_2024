@@ -25,8 +25,6 @@ var gravity_vec = Vector3()
 
 @onready var head = $Head
 @onready var camera: Camera3D = $Head/Camera3D
-@onready var grapplecast: RayCast3D = $Head/GrappleCast
-
 @onready var weapon_manager = $Head/Hand
 
 func _ready():
@@ -50,11 +48,6 @@ func _input(event):
 					weapon_manager.next_weapon()
 				MOUSE_BUTTON_WHEEL_DOWN:
 					weapon_manager.previous_weapon()
-
-func grapple():
-	if Input.is_action_just_pressed("grapple"):
-		if grapplecast.is_colliding():
-			pass
 
 func _physics_process(delta):
 	

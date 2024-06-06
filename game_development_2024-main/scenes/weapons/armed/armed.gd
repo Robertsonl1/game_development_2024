@@ -112,7 +112,7 @@ func on_animation_finish(anim_name):
 			is_equipped = true
 		"Reload":
 			is_reloading = false
-			update_ammo("reload")
+			update_ammo("Reload")
 
 
 
@@ -123,7 +123,7 @@ func update_ammo(action = "Refresh", additional_ammo = 0):
 		"consume":
 			ammo_in_mag -= 1
 		
-		"reload":
+		"Reload":
 			var ammo_needed = mag_size - ammo_in_mag
 			
 			if reserve_ammo > ammo_needed:
