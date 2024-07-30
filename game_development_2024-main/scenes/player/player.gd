@@ -2,7 +2,6 @@ extends CharacterBody3D
 
 signal playerdied
 
-var speed = 10
 var walkspeed = 10
 var crouchspeed = 5
 var sprintspeed = 15
@@ -49,20 +48,20 @@ func _input(event):
 				MOUSE_BUTTON_WHEEL_DOWN:
 					weapon_manager.previous_weapon()
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	
 	process_weapons()
-	process_movement(delta)
+	process_movement(_delta)
 	
 
-func process_movement(delta):
+func process_movement(_delta):
 # Stops all vertical momentum when the player's head hits a ceiling
 	if is_on_ceiling():
 		gravity_vec = Vector3.ZERO
 	
 	# Applys gravity to the player when they are not on the ground
 	if not is_on_floor():
-		gravity_vec += Vector3.DOWN * gravity * delta
+		gravity_vec += Vector3.DOWN * gravity * _delta
 		horizontal_acceleration = air_acceleration
 	else:
 		gravity_vec = -get_floor_normal()
@@ -76,7 +75,7 @@ func process_movement(delta):
 	var input_dir = Input.get_vector("left", "right", "forwards", "backwards")
 	direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
-	horizontal_velocity = horizontal_velocity.lerp(direction * truespeed, horizontal_acceleration * delta)
+	horizontal_velocity = horizontal_velocity.lerp(direction * truespeed, horizontal_acceleration * _delta)
 	movement.z = horizontal_velocity.z + gravity_vec.z
 	movement.x = horizontal_velocity.x + gravity_vec.x
 	movement.y = gravity_vec.y

@@ -34,7 +34,7 @@ func fire():
 		if ammo_in_mag > 0:
 			if not is_firing:
 				is_firing = true
-				animation_player.get_animation("Fire").loop = true
+				animation_player.get_animation("Fire")
 				animation_player.play("Fire", -1.0, fire_rate)
 			
 			return
@@ -44,7 +44,8 @@ func fire():
 
 func fire_stop():
 	is_firing = false
-	animation_player.get_animation("Fire").loop = false
+	animation_player.get_animation("Fire")
+	animation_player.play("RESET")
 
 
 func fire_bullet():    # Will be called from the animation track
@@ -74,11 +75,13 @@ func reload():
 
 # Equip/Unequip Cycle
 func equip():
+	show_weapon()
 	animation_player.play("Equip", -1.0, equip_speed)
 	is_reloading = false
 
 func unequip():
 	animation_player.play("Unequip", -1.0, unequip_speed)
+	hide_weapon()
 
 func is_equip_finished():
 	if is_equipped:

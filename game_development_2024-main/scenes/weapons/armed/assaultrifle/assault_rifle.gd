@@ -9,4 +9,4 @@ func _ready():
 
 
 func on_animation_finish(anim_name):
-	on_animation_finish(anim_name)
+	super.on_animation_finish(anim_name)

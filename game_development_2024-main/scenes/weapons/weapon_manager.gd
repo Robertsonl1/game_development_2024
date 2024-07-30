@@ -54,7 +54,7 @@ func _ready():
 
 
 # Process will be called when changing weapons
-func process(_delta):
+func _process(_delta):
 	
 	if unequipped_weapon == false:
 		if current_weapon.is_unequip_finished() == false:

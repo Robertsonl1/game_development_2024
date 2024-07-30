@@ -16,8 +16,8 @@ albedo_color = Color(1, 0.45098, 0, 1)
 material = SubResource("StandardMaterial3D_3al35")
 
 [node name="MuzzleFlash" type="GPUParticles3D"]
-emitting = false
 lifetime = 0.25
+one_shot = true
 speed_scale = 5.0
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_v148b")
