@@ -2,13 +2,15 @@ extends CharacterBody3D
 
 signal playerdied
 
-var walkspeed = 10
+var walkspeed = 15
 var crouchspeed = 5
 var sprintspeed = 15
 var truespeed = walkspeed
 
+var iscrouching = false
+
 var horizontal_acceleration = 6
-var air_acceleration = 2
+var air_acceleration = 6
 var normal_acceleration = 12
 
 var gravity = 20
@@ -25,6 +27,7 @@ var gravity_vec = Vector3()
 @onready var head = $Head
 @onready var camera: Camera3D = $Head/Camera3D
 @onready var weapon_manager = $Head/Hand
+@onready var crouch_cast = $CrouchCast3D
 
 func _ready():
 	# Captures the mouse so it does not go off the end of the screen
@@ -49,7 +52,6 @@ func _input(event):
 					weapon_manager.previous_weapon()
 
 func _physics_process(_delta):
-	
 	process_weapons()
 	process_movement(_delta)
 	
@@ -82,6 +84,19 @@ func process_movement(_delta):
 		
 	velocity = movement
 	
+		# Crouching when the crouch key is pressed
+	if Input.is_action_just_pressed("crouch"):
+		if iscrouching == false:
+			movementStateChange("crouch")
+			truespeed = crouchspeed
+	
+	# Uncrouches when the crouch key is released
+	if !Input.is_action_pressed("crouch"):
+		if iscrouching == true and !crouch_cast.is_colliding():
+			movementStateChange("uncrouch")
+			truespeed = walkspeed
+		
+	
 	move_and_slide()
 
 
@@ -112,3 +127,25 @@ func window_activity():
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+func movementStateChange(changetype):
+	match changetype:
+		"crouch":
+			$AnimationPlayer.play("crouch")
+			changeCollisionShape("crouching")
+			iscrouching = true
+		
+		"uncrouch":
+			$AnimationPlayer.play_backwards("crouch")
+			changeCollisionShape("standing")
+			iscrouching = false
+
+func changeCollisionShape(shape):
+	match shape:
+		"crouching":
+			$CrouchCollisionShape3D.disabled = false
+			$CollisionShape3D.disabled = true
+			
+		"standing":
+			$CrouchCollisionShape3D.disabled = true
+			$CollisionShape3D.disabled = false
