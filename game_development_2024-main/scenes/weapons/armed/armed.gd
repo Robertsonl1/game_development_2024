@@ -75,13 +75,11 @@ func reload():
 
 # Equip/Unequip Cycle
 func equip():
-	show_weapon()
 	animation_player.play("Equip", -1.0, equip_speed)
 	is_reloading = false
 
 func unequip():
 	animation_player.play("Unequip", -1.0, unequip_speed)
-	hide_weapon()
 
 func is_equip_finished():
 	if is_equipped:
