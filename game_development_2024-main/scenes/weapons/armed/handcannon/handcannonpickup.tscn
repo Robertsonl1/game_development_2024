@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://bpm0kxuo7brtr"]
+
+[ext_resource type="Script" path="res://scenes/weapons/weaponpickup.gd" id="1_784mi"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_00why"]
+size = Vector3(0.073, 0.082, 0.376)
+
+[sub_resource type="BoxMesh" id="BoxMesh_n23jv"]
+size = Vector3(0.055, 0.135, 0.068)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2ol2n"]
+size = Vector3(0.072, 0.21, 0.385)
+
+[node name="HandCannon" type="RigidBody3D"]
+script = ExtResource("1_784mi")
+weapon_name = null
+ammo_in_mag = null
+extra_ammo = null
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 1, 9.29879e-09, 0.106079, -0.100441)
+mesh = SubResource("BoxMesh_00why")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.999999, 3.22608e-08, 2.01356e-09, -3.17664e-08, 0.969339, 0.24573, 5.97562e-09, -0.24573, 0.969339, -6.40899e-09, 0.0104121, 0.0444944)
+mesh = SubResource("BoxMesh_n23jv")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0419105, -0.0976461)
+shape = SubResource("BoxShape3D_2ol2n")
