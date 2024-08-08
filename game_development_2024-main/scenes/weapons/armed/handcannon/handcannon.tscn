@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://dp2532qasylyo"]
+[gd_scene load_steps=12 format=3 uid="uid://dp2532qasylyo"]
 
 [ext_resource type="Script" path="res://scenes/weapons/armed/handcannon/handcannon.gd" id="1_fn51r"]
+[ext_resource type="PackedScene" uid="uid://bpm0kxuo7brtr" path="res://scenes/weapons/armed/handcannon/handcannonpickup.tscn" id="2_2r5ar"]
 [ext_resource type="PackedScene" uid="uid://bmfmuai322siw" path="res://scenes/weapons/muzzle_flash.tscn" id="2_jig4l"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_00why"]
@@ -190,6 +191,8 @@ _data = {
 
 [node name="HandCannon" type="Node3D"]
 script = ExtResource("1_fn51r")
+weapon_pickup = ExtResource("2_2r5ar")
+equip_pos = Vector3(0.158, -0.007, -0.437)
 impact_effect = ExtResource("2_jig4l")
 muzzle_flash_path = NodePath("Root/Anchor/Body/MuzzleFlash")
 weapon_name = "Hand Cannon"

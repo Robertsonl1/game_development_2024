@@ -1,6 +1,9 @@
 extends Weapon
 class_name Armed
 
+# Rigidbody Version
+@export var weapon_pickup : PackedScene
+
 # References
 var animation_player
 
@@ -15,6 +18,9 @@ var is_reloading = false
 
 @export var damage = 10
 @export var fire_rate = 1.0
+
+# The offset of the weapon from the camera
+@export var equip_pos = Vector3.ZERO
 
 # Effects
 @export var impact_effect: PackedScene

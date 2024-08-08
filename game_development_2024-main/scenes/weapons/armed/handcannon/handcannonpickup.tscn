@@ -13,7 +13,7 @@ size = Vector3(0.072, 0.21, 0.385)
 
 [node name="HandCannon" type="RigidBody3D"]
 script = ExtResource("1_784mi")
-weapon_name = null
+weapon_name = "HandCannon"
 ammo_in_mag = null
 extra_ammo = null
 

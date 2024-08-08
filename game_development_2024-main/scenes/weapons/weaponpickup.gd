@@ -25,4 +25,4 @@ func get_weapon_pickup_data():
 
 # When the rigidbody goes to sleeping state after being idle for sometime, it will be made static
 func on_sleeping():
-	mode = FREEZE_MODE_STATIC
+	freeze_mode = FREEZE_MODE_STATIC

@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://b5ds11qrvkbyu"]
+[gd_scene load_steps=13 format=3 uid="uid://b5ds11qrvkbyu"]
 
 [ext_resource type="Script" path="res://scenes/weapons/armed/assaultrifle/assault_rifle.gd" id="1_6egdm"]
+[ext_resource type="PackedScene" uid="uid://dxy1jvkjx11ib" path="res://scenes/weapons/armed/assaultrifle/assault_riflepickup.tscn" id="2_ei5gv"]
 [ext_resource type="PackedScene" uid="uid://bmfmuai322siw" path="res://scenes/weapons/muzzle_flash.tscn" id="2_sl6ud"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_6ane2"]
@@ -134,8 +135,8 @@ tracks/0/path = NodePath("Root/Anchor/Body:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.3, 0.5, 1),
+"transitions": PackedFloat32Array(1, 2.2974, 0.554785, 1),
 "update": 0,
 "values": [Vector3(0, 0, -0.5), Vector3(-0.0468697, 0.0662875, -0.5), Vector3(0.168649, -0.128195, -0.5), Vector3(0, 0, -0.5)]
 }
@@ -146,8 +147,8 @@ tracks/1/path = NodePath("Root/Anchor/Body:rotation")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.3, 0.5, 1),
+"transitions": PackedFloat32Array(1, 2.2974, 0.554785, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0.683392, 0.477245, 0.315605), Vector3(-0.440282, -0.601729, 0.823189), Vector3(0, 0, 0)]
 }
@@ -193,6 +194,8 @@ _data = {
 
 [node name="AssaultRifle" type="Node3D"]
 script = ExtResource("1_6egdm")
+weapon_pickup = ExtResource("2_ei5gv")
+equip_pos = Vector3(0.158, -0.007, -0.437)
 impact_effect = ExtResource("2_sl6ud")
 muzzle_flash_path = NodePath("Root/Anchor/Body/MuzzleFlash")
 weapon_name = "Assault Rifle"
