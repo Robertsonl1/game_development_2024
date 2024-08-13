@@ -119,7 +119,12 @@ func process_weapons():
 	# Reloading
 	if Input.is_action_just_pressed("reload"):
 		weapon_manager.reload()
-
+	
+	# Drop Weapon	
+	if Input.is_action_just_pressed("drop"):
+		weapon_manager.drop_weapon()
+	
+	
 # To show/hide the cursor
 func window_activity():
 	if Input.is_action_just_pressed("ui_cancel"):

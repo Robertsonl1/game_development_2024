@@ -72,3 +72,8 @@ offset_bottom = 3.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.686275)
+
+[node name="InteractionPrompt" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

@@ -39,10 +39,7 @@ func _ready():
 	# Initialize references for each weapons
 	for w in weapons:
 		if weapons[w] != null:
-			weapons[w].weapon_manager = self
-			weapons[w].player = owner
-			weapons[w].ray = get_parent().get_node("Camera3D/RayCast3D")
-			weapons[w].visible = false
+			weapon_setup([w])
 	
 	# Set current weapon to unarmed
 	current_weapon = weapons["Empty"]
@@ -52,6 +49,14 @@ func _ready():
 	set_process(false)
 
 
+
+
+# Initializes Weapon's values
+func weapon_setup(w):
+	w.weapon_manager = self
+	w.player = owner
+	w.ray = get_parent().get_node("Camera3D/RayCast3D")
+	w.visible = false
 
 # Process will be called when changing weapons
 func _process(_delta):
@@ -148,6 +153,99 @@ func add_ammo(amount):
 	
 	current_weapon.update_ammo("add", amount)
 	return true
+	
+	
+	
+	
+# Add weapon to an existing empty slot
+func add_weapon(weapon_data):
+	
+	if not weapon_data["Name"] in all_weapons:
+		return
+	
+	if is_instance_valid(weapons["Primary"]) == false:
+		
+		# Instance the new weapon
+		var weapon = Global.instantiate_node(all_weapons[weapon_data["Name"]], Vector3.ZERO, self)
+		
+		# Initialize the new weapon references
+		weapon_setup(weapon)
+		weapon.ammo_in_mag = weapon_data["Ammo"]
+		weapon.extra_ammo = weapon_data["ExtraAmmo"]
+		weapon.mag_size = weapon_data["MagSize"]
+		weapon.transform.origin = weapon.equip_pos
+		
+		# Update the dictionary and change weapon
+		weapons["Primary"] = weapon
+		change_weapon("Primary")
+		
+		return
+	
+	if is_instance_valid(weapons["Secondary"]) == false:
+		
+		# Instance the new weapon
+		var weapon = Global.instantiate_node(all_weapons[weapon_data["Name"]], Vector3.ZERO, self)
+		
+		# Initialize the new weapon references
+		weapon_setup(weapon)
+		weapon.ammo_in_mag = weapon_data["Ammo"]
+		weapon.extra_ammo = weapon_data["ExtraAmmo"]
+		weapon.mag_size = weapon_data["MagSize"]
+		weapon.transform.origin = weapon.equip_pos
+		
+		# Update the dictionary and change weapon
+		weapons["Secondary"] = weapon
+		change_weapon("Secondary")
+		
+		return
+	
+# Will be called from player.gd
+func drop_weapon():
+	if current_weapon_slot != "Empty":
+		current_weapon.drop_weapon()
+		
+		# Need to be set to Unarmed in order call change_weapon() function
+		current_weapon_slot = "Empty"
+		current_weapon = weapons["Empty"]
+		
+		# Update HUD
+		current_weapon.update_ammo()
+
+	
+
+
+# Switch Weapon / Replace Weapon
+func switch_weapon(weapon_data):
+	
+	# Checks whether there's any empty slot available
+	# If there is, then we simply add that new weapon to the empty slot
+	for i in weapons:
+		if is_instance_valid(weapons[i]) == false:
+			add_weapon(weapon_data)
+			return
+	
+	
+	# If we are unarmed, and pickup a weapon
+	# Then the weapon at the primary slot will be dropped and replaced with the new weapon
+	if current_weapon.name == "Unarmed":
+		weapons["Primary"].drop_weapon()
+		await get_tree().idle_frame
+		add_weapon(weapon_data)
+	
+	
+	# If the weapon to be picked up and the current weapon are same
+	# Theb the ammo of the new weapon is added to the currently equipped weapon
+	elif current_weapon.weapon_name == weapon_data["Name"]:
+		add_ammo(weapon_data["Ammo"] + weapon_data["ExtraAmmo"])
+	
+	
+	# If we already have an equipped weapon, then we drop it
+	# And equip the new weapon
+	else:
+		drop_weapon()
+		
+		await get_tree().idle_frame
+		add_weapon(weapon_data)
 
 
 # Update HUD

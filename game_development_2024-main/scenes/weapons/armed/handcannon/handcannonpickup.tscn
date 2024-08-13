@@ -18,15 +18,15 @@ ammo_in_mag = null
 extra_ammo = null
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 1, 9.29879e-09, 0.106079, -0.100441)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 1, -0.0370878, 0.106079, -0.100441)
 mesh = SubResource("BoxMesh_00why")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.999999, 3.22608e-08, 2.01356e-09, -3.17664e-08, 0.969339, 0.24573, 5.97562e-09, -0.24573, 0.969339, -6.40899e-09, 0.0104121, 0.0444944)
+transform = Transform3D(0.999999, 3.22608e-08, 2.01356e-09, -3.17664e-08, 0.969339, 0.24573, 5.97562e-09, -0.24573, 0.969339, -0.0370878, 0.0104121, 0.0444944)
 mesh = SubResource("BoxMesh_n23jv")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0419105, -0.0976461)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0370878, 0.0419105, -0.0976461)
 shape = SubResource("BoxShape3D_2ol2n")
