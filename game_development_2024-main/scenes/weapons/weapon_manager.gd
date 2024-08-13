@@ -247,6 +247,36 @@ func switch_weapon(weapon_data):
 		await get_tree().idle_frame
 		add_weapon(weapon_data)
 
+# Interaction Prompt
+func show_interaction_prompt(weapon_name):
+	var desc = "Add Ammo" if current_weapon.weapon_name == weapon_name else "Equip"
+	hud.show_interaction_prompt(desc)
+
+func hide_interaction_prompt():
+	hud.hide_interaction_prompt()
+
+# Searches for weapon pickups, and based on player input executes further tasks (will be called from player.gd)
+func process_weapon_pickup():
+	var from = global_transform.origin
+	var to = global_transform.origin - global_transform.basis.z.normalized() * 2.0
+	var space_state = get_world_3d().direct_space_state
+	var query = PhysicsRayQueryParameters3D.create(from, to, [owner], 1)
+	var collision = space_state.intersect_ray(query)
+	
+	if collision:
+		var body = collision["collider"]
+		
+		if body.has_method("get_weapon_pickup_data"):
+			var weapon_data = body.get_weapon_pickup_data()
+			
+			show_interaction_prompt(weapon_data["Name"])
+			
+			if Input.is_action_just_pressed("interact"):
+				switch_weapon(weapon_data)
+				body.queue_free()
+		else:
+			hide_interaction_prompt()
+
 
 # Update HUD
 func update_hud(weapon_data):

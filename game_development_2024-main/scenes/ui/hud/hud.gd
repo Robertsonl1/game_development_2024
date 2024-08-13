@@ -13,6 +13,8 @@ func _enter_tree():
 	display_ui = $Background/Display/TextureRect
 	slot_ui = $Background/Display/Weaponslot
 
+func _ready():
+	hide_interaction_prompt()
 
 func update_weapon_ui(weapon_data, weapon_slot):
 	slot_ui.text = weapon_slot
@@ -22,3 +24,12 @@ func update_weapon_ui(weapon_data, weapon_slot):
 		return
 	weapon_ui.text = weapon_data["Name"] + ": " + weapon_data["Ammo"] + "/" + weapon_data["ReserveAmmo"]
 	
+# Show/Hide interaction prompt
+func show_interaction_prompt(description = "Interact"):
+	$InteractionPrompt.visible = true
+	$InteractionPrompt/Description.text = description
+	$Crosshair.visible = false
+
+func hide_interaction_prompt():
+	$InteractionPrompt.visible = false
+	$Crosshair.visible = true

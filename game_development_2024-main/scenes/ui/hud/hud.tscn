@@ -74,6 +74,37 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0.686275)
 
 [node name="InteractionPrompt" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(10, 10)
+color = Color(0, 0, 0, 0.588235)
+
+[node name="Key" type="Label" parent="InteractionPrompt"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -2.0
+offset_top = -3.0
+offset_right = 22.0
+offset_bottom = 23.0
+text = "E"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Description" type="Label" parent="InteractionPrompt"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = -3.0
+offset_right = 97.0
+offset_bottom = 23.0
+text = "Interact"
+horizontal_alignment = 1
+vertical_alignment = 1
