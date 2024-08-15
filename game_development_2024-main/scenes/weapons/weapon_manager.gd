@@ -32,14 +32,14 @@ func _ready():
 	
 	weapons = {
 		"Empty" : $Unarmed,
-		"Primary" : $HandCannon,
-		"Secondary" : $AssaultRifle
+		"Primary" : null,
+		"Secondary" : null
 	}
 	
 	# Initialize references for each weapons
 	for w in weapons:
-		if weapons[w] != null:
-			weapon_setup([w])
+		if is_instance_valid(weapons[w]):
+			weapon_setup(weapons[w])
 	
 	# Set current weapon to unarmed
 	current_weapon = weapons["Empty"]
@@ -84,7 +84,7 @@ func change_weapon(new_weapon_slot):
 		current_weapon.update_ammo() # Refresh
 		return
 	
-	if weapons[new_weapon_slot] == null:
+	if is_instance_valid(weapons[new_weapon_slot]) == false:
 		return
 	
 	current_weapon_slot = new_weapon_slot
@@ -94,7 +94,7 @@ func change_weapon(new_weapon_slot):
 	update_weapon_index()
 	
 	# Change Weapons
-	if current_weapon != null:
+	if is_instance_valid(current_weapon):
 		unequipped_weapon = false
 		current_weapon.unequip()
 	
@@ -148,7 +148,7 @@ func reload():
 
 # Ammo Pickup
 func add_ammo(amount):
-	if current_weapon == null || current_weapon.name == "Unarmed":
+	if is_instance_valid(current_weapon) == false || current_weapon . name == "Unarmed":
 		return false
 	
 	current_weapon.update_ammo("add", amount)
@@ -171,7 +171,7 @@ func add_weapon(weapon_data):
 		# Initialize the new weapon references
 		weapon_setup(weapon)
 		weapon.ammo_in_mag = weapon_data["Ammo"]
-		weapon.extra_ammo = weapon_data["ExtraAmmo"]
+		weapon.reserve_ammo = weapon_data["ReserveAmmo"]
 		weapon.mag_size = weapon_data["MagSize"]
 		weapon.transform.origin = weapon.equip_pos
 		
@@ -189,7 +189,7 @@ func add_weapon(weapon_data):
 		# Initialize the new weapon references
 		weapon_setup(weapon)
 		weapon.ammo_in_mag = weapon_data["Ammo"]
-		weapon.extra_ammo = weapon_data["ExtraAmmo"]
+		weapon.reserve_ammo = weapon_data["ReserveAmmo"]
 		weapon.mag_size = weapon_data["MagSize"]
 		weapon.transform.origin = weapon.equip_pos
 		
@@ -229,14 +229,14 @@ func switch_weapon(weapon_data):
 	# Then the weapon at the primary slot will be dropped and replaced with the new weapon
 	if current_weapon.name == "Unarmed":
 		weapons["Primary"].drop_weapon()
-		await get_tree().idle_frame
+		await get_tree().process_frame
 		add_weapon(weapon_data)
 	
 	
 	# If the weapon to be picked up and the current weapon are same
 	# Theb the ammo of the new weapon is added to the currently equipped weapon
 	elif current_weapon.weapon_name == weapon_data["Name"]:
-		add_ammo(weapon_data["Ammo"] + weapon_data["ExtraAmmo"])
+		add_ammo(weapon_data["Ammo"] + weapon_data["ReserveAmmo"])
 	
 	
 	# If we already have an equipped weapon, then we drop it
@@ -244,7 +244,7 @@ func switch_weapon(weapon_data):
 	else:
 		drop_weapon()
 		
-		await get_tree().idle_frame
+		await get_tree().process_frame
 		add_weapon(weapon_data)
 
 # Interaction Prompt
@@ -258,9 +258,9 @@ func hide_interaction_prompt():
 # Searches for weapon pickups, and based on player input executes further tasks (will be called from player.gd)
 func process_weapon_pickup():
 	var from = global_transform.origin
-	var to = global_transform.origin - global_transform.basis.z.normalized() * 2.0
+	var to = global_transform.origin - global_transform.basis.z.normalized() * 6.0
 	var space_state = get_world_3d().direct_space_state
-	var query = PhysicsRayQueryParameters3D.create(from, to, [owner], 1)
+	var query = PhysicsRayQueryParameters3D.create(from, to, 2)
 	var collision = space_state.intersect_ray(query)
 	
 	if collision:
@@ -274,8 +274,8 @@ func process_weapon_pickup():
 			if Input.is_action_just_pressed("interact"):
 				switch_weapon(weapon_data)
 				body.queue_free()
-		else:
-			hide_interaction_prompt()
+	else:
+		hide_interaction_prompt()
 
 
 # Update HUD

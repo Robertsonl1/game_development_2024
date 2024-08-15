@@ -15,21 +15,23 @@ size = Vector3(0.076, 0.09, 0.478)
 size = Vector3(0.075, 0.283, 0.489)
 
 [node name="AssaultRifle" type="RigidBody3D"]
+collision_layer = 2
 script = ExtResource("1_k8d4m")
 weapon_name = "AssaultRifle"
+ammo_in_mag = 30
+reserve_ammo = 60
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0418379, -0.129683, -0.100811)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.129683, -0.100811)
 mesh = SubResource("BoxMesh_6ane2")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.896957, 0.442117, 0, -0.442117, 0.896957, -0.0418379, -0.0807101, 0.195126)
+transform = Transform3D(1, 0, 0, 0, 0.896957, 0.442117, 0, -0.442117, 0.896957, 0, -0.0807101, 0.195126)
 mesh = SubResource("BoxMesh_db04x")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0418379, 0, 0)
 mesh = SubResource("BoxMesh_250oj")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0418379, -0.0960588, 0.00531697)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0960588, 0.00531697)
 shape = SubResource("BoxShape3D_51g5y")

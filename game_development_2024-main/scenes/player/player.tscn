@@ -1,9 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://d2nxinnku83xw"]
+[gd_scene load_steps=11 format=3 uid="uid://d2nxinnku83xw"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_hl7cn"]
 [ext_resource type="Script" path="res://scenes/weapons/weapon_manager.gd" id="2_3t5l0"]
-[ext_resource type="PackedScene" uid="uid://dp2532qasylyo" path="res://scenes/weapons/armed/handcannon/handcannon.tscn" id="2_24c3m"]
-[ext_resource type="PackedScene" uid="uid://b5ds11qrvkbyu" path="res://scenes/weapons/armed/assaultrifle/assault_rifle.tscn" id="3_1sxk0"]
 [ext_resource type="PackedScene" uid="uid://b64qfavu0pi1w" path="res://scenes/weapons/unarmed/unarmed.tscn" id="4_jfo8s"]
 [ext_resource type="PackedScene" uid="uid://bie5kfrux1mbo" path="res://scenes/ui/hud/hud.tscn" id="5_7jv1j"]
 
@@ -31,7 +29,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_t4w4k"]
 resource_name = "crouch"
-length = 0.05
+length = 0.1
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -40,10 +38,10 @@ tracks/0/path = NodePath("Head:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05),
+"times": PackedFloat32Array(0, 0.1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0, 0.572963, 0), Vector3(0, -0.239929, 0)]
+"values": [Vector3(0, 0.572963, 0), Vector3(0, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_h0tpq"]
@@ -64,7 +62,6 @@ mesh = SubResource("CapsuleMesh_k4s4p")
 shape = SubResource("CapsuleShape3D_54o6h")
 
 [node name="CrouchCollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("CapsuleShape3D_lioq3")
 
 [node name="CrouchCast3D" type="RayCast3D" parent="."]
@@ -74,24 +71,12 @@ target_position = Vector3(0, 1.1, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.572963, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.128561, 0)
 
 [node name="RayCast3D" type="RayCast3D" parent="Head/Camera3D"]
 target_position = Vector3(0, 0, -100)
 
 [node name="Hand" type="Node3D" parent="Head"]
 script = ExtResource("2_3t5l0")
-
-[node name="HandCannon" parent="Head/Hand" instance=ExtResource("2_24c3m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.224, -0.101, -0.354)
-ammo_in_mag = 7
-reserve_ammo = 21
-damage = 50
-
-[node name="AssaultRifle" parent="Head/Hand" instance=ExtResource("3_1sxk0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.158, -0.007, -0.437)
-ammo_in_mag = 30
-reserve_ammo = 120
 
 [node name="Unarmed" parent="Head/Hand" instance=ExtResource("4_jfo8s")]
 

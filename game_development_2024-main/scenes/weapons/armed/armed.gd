@@ -157,7 +157,7 @@ func update_ammo(action = "Refresh", additional_ammo = 0):
 func drop_weapon():
 	var pickup = Global.instantiate_node(weapon_pickup, global_transform.origin - player.global_transform.basis.z.normalized())
 	pickup.ammo_in_mag = ammo_in_mag
-	pickup.extra_ammo = reserve_ammo
+	pickup.reserve_ammo = reserve_ammo
 	pickup.mag_size = mag_size
 	
 	queue_free()

@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://1hrlieyp85wi"]
+[gd_scene load_steps=11 format=3 uid="uid://1hrlieyp85wi"]
 
 [ext_resource type="Texture2D" uid="uid://yubb6ou4f7j4" path="res://data/textures/placeholder.png" id="1_ayfrv"]
 [ext_resource type="PackedScene" uid="uid://d2nxinnku83xw" path="res://scenes/player/player.tscn" id="1_gn6kh"]
 [ext_resource type="PackedScene" uid="uid://b5c2k5kofgpp7" path="res://scenes/weapons/ammopickup/ammo_pickup.tscn" id="3_hfh1v"]
+[ext_resource type="PackedScene" uid="uid://bpm0kxuo7brtr" path="res://scenes/weapons/armed/handcannon/handcannonpickup.tscn" id="4_shaoc"]
+[ext_resource type="PackedScene" uid="uid://dxy1jvkjx11ib" path="res://scenes/weapons/armed/assaultrifle/assault_riflepickup.tscn" id="5_s1fj1"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i7h4c"]
 size = Vector3(50, 1, 50)
@@ -74,3 +76,17 @@ shape = SubResource("BoxShape3D_uonfk")
 
 [node name="AmmoPickup" parent="." instance=ExtResource("3_hfh1v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.1681, 0.735694, -0.136473)
+
+[node name="Pickup" type="Node3D" parent="."]
+
+[node name="HandCannon2" parent="Pickup" instance=ExtResource("4_shaoc")]
+transform = Transform3D(0.0965581, 0.995327, 0, -0.995327, 0.0965581, 0, 0, 0, 1, -3.02723, 0.748816, -4.62299)
+
+[node name="HandCannon" parent="Pickup" instance=ExtResource("4_shaoc")]
+transform = Transform3D(-0.0107588, 0.665638, -0.746197, -0.999869, -0.016161, 0, -0.0120593, 0.746099, 0.665725, -2.29752, 1.5187, 3.74531)
+
+[node name="AssaultRifle" parent="Pickup" instance=ExtResource("5_s1fj1")]
+transform = Transform3D(0.00238209, -0.637769, -0.770224, 0.999993, 0.00373501, 0, 0.0028768, -0.770219, 0.637774, -2.12783, 1.60569, 4.11224)
+
+[node name="AssaultRifle2" parent="Pickup" instance=ExtResource("5_s1fj1")]
+transform = Transform3D(-0.0119901, 0.999928, 0, -0.999928, -0.0119901, 0, 0, 0, 1, -3.18192, 0.796402, -3.73677)

@@ -123,6 +123,9 @@ func process_weapons():
 	# Drop Weapon	
 	if Input.is_action_just_pressed("drop"):
 		weapon_manager.drop_weapon()
+		
+	# Pickup Weapon
+	weapon_manager.process_weapon_pickup()
 	
 	
 # To show/hide the cursor

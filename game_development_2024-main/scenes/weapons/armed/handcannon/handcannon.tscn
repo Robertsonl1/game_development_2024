@@ -192,12 +192,13 @@ _data = {
 [node name="HandCannon" type="Node3D"]
 script = ExtResource("1_fn51r")
 weapon_pickup = ExtResource("2_2r5ar")
-equip_pos = Vector3(0.158, -0.007, -0.437)
+equip_pos = Vector3(0.158, -0.2, -0.437)
 impact_effect = ExtResource("2_jig4l")
 muzzle_flash_path = NodePath("Root/Anchor/Body/MuzzleFlash")
 weapon_name = "Hand Cannon"
 
 [node name="Root" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0506467, 0.11647)
 
 [node name="Anchor" type="Node3D" parent="Root"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)

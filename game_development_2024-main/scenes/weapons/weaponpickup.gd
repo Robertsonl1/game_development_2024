@@ -4,7 +4,7 @@ extends RigidBody3D
 # Weapon parameters that will be transferred if this weapon is picked
 @export var weapon_name = "Weapon"
 @export var ammo_in_mag = 5
-@export var extra_ammo = 10
+@export var reserve_ammo = 10
 @onready var mag_size = ammo_in_mag
 
 
@@ -17,7 +17,7 @@ func get_weapon_pickup_data():
 	return{
 		"Name" : weapon_name,
 		"Ammo" : ammo_in_mag,
-		"ExtraAmmo" : extra_ammo,
+		"ReserveAmmo" : reserve_ammo,
 		"MagSize" : mag_size
 	}
 
