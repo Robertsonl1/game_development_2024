@@ -234,7 +234,7 @@ func switch_weapon(weapon_data):
 	
 	
 	# If the weapon to be picked up and the current weapon are same
-	# Theb the ammo of the new weapon is added to the currently equipped weapon
+	# The ammo of the new weapon is added to the currently equipped weapon
 	elif current_weapon.weapon_name == weapon_data["Name"]:
 		add_ammo(weapon_data["Ammo"] + weapon_data["ReserveAmmo"])
 	

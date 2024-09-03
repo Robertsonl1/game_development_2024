@@ -198,7 +198,7 @@ weapon_pickup = ExtResource("2_ei5gv")
 equip_pos = Vector3(0.158, -0.2, -0.437)
 impact_effect = ExtResource("2_sl6ud")
 muzzle_flash_path = NodePath("Root/Anchor/Body/MuzzleFlash")
-weapon_name = "Assault Rifle"
+weapon_name = "AssaultRifle"
 
 [node name="Root" type="Node3D" parent="."]
 
