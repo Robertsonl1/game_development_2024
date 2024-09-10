@@ -49,8 +49,6 @@ func _ready():
 	set_process(false)
 
 
-
-
 # Initializes Weapon's values
 func weapon_setup(w):
 	w.weapon_manager = self
@@ -75,8 +73,6 @@ func _process(_delta):
 	
 	changing_weapon = false
 	set_process(false)
-
-
 
 func change_weapon(new_weapon_slot):
 	
