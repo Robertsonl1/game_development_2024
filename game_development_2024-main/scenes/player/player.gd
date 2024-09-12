@@ -35,6 +35,7 @@ func _ready():
 
 func _process(_delta):
 	window_activity()
+	
 
 func _input(event):
 	# Handles the rotation of the player when the mouse is moved

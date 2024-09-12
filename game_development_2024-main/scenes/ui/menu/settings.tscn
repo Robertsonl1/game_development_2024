@@ -53,7 +53,7 @@ popup/item_1/id = 1
 popup/item_2/text = "High"
 popup/item_2/id = 2
 
-[node name="Label2" type="Label" parent="VBoxContainer"]
+[node name="Textures" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 text = "Textures"
 
@@ -68,7 +68,7 @@ popup/item_1/id = 1
 popup/item_2/text = "High"
 popup/item_2/id = 2
 
-[node name="Label3" type="Label" parent="VBoxContainer"]
+[node name="PostProcessing" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 text = "Post Processing"
 
@@ -83,9 +83,61 @@ popup/item_1/id = 1
 popup/item_2/text = "High"
 popup/item_2/id = 2
 
-[node name="Label4" type="Label" parent="VBoxContainer"]
+[node name="Gameplay" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "Fog (Optional)"
+theme_override_font_sizes/font_size = 26
+text = "Gameplay"
+horizontal_alignment = 1
+
+[node name="Difficulty" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Difficulty"
+
+[node name="OptionButton4" type="OptionButton" parent="VBoxContainer"]
+layout_mode = 2
+item_count = 3
+selected = 1
+popup/item_0/text = "Easy"
+popup/item_0/id = 0
+popup/item_1/text = "Medium"
+popup/item_1/id = 1
+popup/item_2/text = "Hard"
+popup/item_2/id = 2
+
+[node name="ScreenShake" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Screen Shake"
+
+[node name="CheckBox2" type="CheckBox" parent="VBoxContainer"]
+layout_mode = 2
+button_pressed = true
+
+[node name="Fog" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Fog Mode"
 
 [node name="CheckBox" type="CheckBox" parent="VBoxContainer"]
 layout_mode = 2
+
+[node name="UiScale" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "User Interface Scale"
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Exit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Exit"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.521569)
+
+[connection signal="item_selected" from="VBoxContainer/OptionButton" to="." method="_on_option_button_item_selected"]

@@ -1,26 +1,36 @@
-[gd_scene load_steps=9 format=3 uid="uid://1hrlieyp85wi"]
+[gd_scene load_steps=11 format=3 uid="uid://1hrlieyp85wi"]
 
+[ext_resource type="Texture2D" uid="uid://cfeirql627i86" path="res://data/textures/quarry_04_puresky_4k.hdr" id="1_5tqfv"]
 [ext_resource type="PackedScene" uid="uid://d2nxinnku83xw" path="res://scenes/player/player.tscn" id="1_gn6kh"]
+[ext_resource type="Script" path="res://scenes/main.gd" id="1_uu6re"]
 [ext_resource type="PackedScene" uid="uid://b5c2k5kofgpp7" path="res://scenes/weapons/ammopickup/ammo_pickup.tscn" id="3_hfh1v"]
 [ext_resource type="PackedScene" uid="uid://bpm0kxuo7brtr" path="res://scenes/weapons/armed/handcannon/handcannonpickup.tscn" id="4_shaoc"]
 [ext_resource type="PackedScene" uid="uid://dxy1jvkjx11ib" path="res://scenes/weapons/armed/assaultrifle/assault_riflepickup.tscn" id="5_s1fj1"]
 [ext_resource type="PackedScene" uid="uid://c2dj2uncr4wgc" path="res://data/meshes/level.glb" id="6_fwn44"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_b4g1g"]
-sky_curve = 0.054047
-use_debanding = false
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_sxtvn"]
+panorama = ExtResource("1_5tqfv")
 
-[sub_resource type="Sky" id="Sky_4cbqv"]
-sky_material = SubResource("ProceduralSkyMaterial_b4g1g")
+[sub_resource type="Sky" id="Sky_6x5tw"]
+sky_material = SubResource("PanoramaSkyMaterial_sxtvn")
 
 [sub_resource type="Environment" id="Environment_cljkx"]
 background_mode = 2
-sky = SubResource("Sky_4cbqv")
+background_energy_multiplier = 0.13
+sky = SubResource("Sky_6x5tw")
+sky_rotation = Vector3(0, 3.14159, 0)
 ambient_light_source = 3
 ambient_light_sky_contribution = 0.0
 volumetric_fog_density = 0.011
 
 [node name="Node3D" type="Node3D"]
+script = ExtResource("1_uu6re")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_cljkx")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.906308, 0.323744, 0.271654, 0, -0.642788, 0.766044, 0.422618, -0.694272, -0.582563, 0, 23.8221, 0)
 
 [node name="level" parent="." instance=ExtResource("6_fwn44")]
 
@@ -44,24 +54,23 @@ transform = Transform3D(0.00238209, -0.637769, -0.770224, 0.999993, 0.00373501, 
 [node name="AssaultRifle2" parent="Pickup" instance=ExtResource("5_s1fj1")]
 transform = Transform3D(-0.0119901, 0.999928, 0, -0.999928, -0.0119901, 0, 0, 0, 1, 1.26531, 0.183691, 7.66142)
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_cljkx")
+[node name="LightManager" type="Node" parent="."]
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
+[node name="OmniLight3D" type="OmniLight3D" parent="LightManager"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.321268, 1.58718, -13.7386)
 light_color = Color(1, 0.941176, 0.843137, 1)
 light_energy = 4.2
 shadow_enabled = true
 omni_range = 19.517
 
-[node name="OmniLight3D3" type="OmniLight3D" parent="."]
+[node name="OmniLight3D3" type="OmniLight3D" parent="LightManager"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.32348, 1.58718, 11.5122)
 light_color = Color(1, 0.941176, 0.843137, 1)
 light_energy = 4.2
 shadow_enabled = true
 omni_range = 19.517
 
-[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+[node name="OmniLight3D2" type="OmniLight3D" parent="LightManager"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.93385, 1.58718, 7.08375)
 light_color = Color(1, 0.941176, 0.843137, 1)
 light_energy = 4.2

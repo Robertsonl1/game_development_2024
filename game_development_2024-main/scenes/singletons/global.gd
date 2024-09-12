@@ -1,7 +1,7 @@
 extends Node
 
 var fog := false
-
+var light = 1
 
 
 func instantiate_node(packed_scene, pos = null, parent = null):
