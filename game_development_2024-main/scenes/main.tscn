@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b5c2k5kofgpp7" path="res://scenes/weapons/ammopickup/ammo_pickup.tscn" id="3_hfh1v"]
 [ext_resource type="PackedScene" uid="uid://bpm0kxuo7brtr" path="res://scenes/weapons/armed/handcannon/handcannonpickup.tscn" id="4_shaoc"]
 [ext_resource type="PackedScene" uid="uid://dxy1jvkjx11ib" path="res://scenes/weapons/armed/assaultrifle/assault_riflepickup.tscn" id="5_s1fj1"]
-[ext_resource type="PackedScene" uid="uid://c2dj2uncr4wgc" path="res://data/meshes/level.glb" id="6_fwn44"]
+[ext_resource type="PackedScene" uid="uid://beki5q4inpgd" path="res://data/meshes/level.glb" id="6_fwn44"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_sxtvn"]
 panorama = ExtResource("1_5tqfv")
@@ -26,13 +26,13 @@ volumetric_fog_density = 0.011
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_uu6re")
 
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.0894011, 0.491943, 0, 0.983885, 0.178802, -0.5, 0.154847, -0.852069, 3.11285, 20.7846, -5.74426)
+light_color = Color(0.890196, 0.717647, 0.47451, 1)
+shadow_enabled = true
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_cljkx")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.906308, 0.323744, 0.271654, 0, -0.642788, 0.766044, 0.422618, -0.694272, -0.582563, 0, 23.8221, 0)
-
-[node name="level" parent="." instance=ExtResource("6_fwn44")]
 
 [node name="Player" parent="." instance=ExtResource("1_gn6kh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.99473, -0.0660729, -0.875505)
@@ -76,3 +76,5 @@ light_color = Color(1, 0.941176, 0.843137, 1)
 light_energy = 4.2
 shadow_enabled = true
 omni_range = 19.517
+
+[node name="level" parent="." instance=ExtResource("6_fwn44")]
