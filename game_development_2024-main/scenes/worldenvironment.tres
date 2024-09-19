@@ -1,0 +1,18 @@
+[gd_resource type="Environment" load_steps=4 format=3 uid="uid://dk5bpn7qpy38g"]
+
+[ext_resource type="Texture2D" uid="uid://cfeirql627i86" path="res://data/textures/quarry_04_puresky_4k.hdr" id="1_njsf6"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_sxtvn"]
+panorama = ExtResource("1_njsf6")
+
+[sub_resource type="Sky" id="Sky_6x5tw"]
+sky_material = SubResource("PanoramaSkyMaterial_sxtvn")
+
+[resource]
+background_mode = 2
+background_energy_multiplier = 0.13
+sky = SubResource("Sky_6x5tw")
+sky_rotation = Vector3(0, 3.14159, 0)
+ambient_light_source = 3
+ambient_light_sky_contribution = 0.1
+volumetric_fog_density = 0.1

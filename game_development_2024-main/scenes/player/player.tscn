@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://d2nxinnku83xw"]
+[gd_scene load_steps=12 format=3 uid="uid://d2nxinnku83xw"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_hl7cn"]
 [ext_resource type="Script" path="res://scenes/weapons/weapon_manager.gd" id="2_3t5l0"]
 [ext_resource type="PackedScene" uid="uid://b64qfavu0pi1w" path="res://scenes/weapons/unarmed/unarmed.tscn" id="4_jfo8s"]
 [ext_resource type="PackedScene" uid="uid://bie5kfrux1mbo" path="res://scenes/ui/hud/hud.tscn" id="5_7jv1j"]
+[ext_resource type="PackedScene" uid="uid://bdxsoh4ybs7xt" path="res://scenes/ui/hud/pause.tscn" id="5_kjkjd"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_k4s4p"]
 
@@ -81,6 +82,8 @@ script = ExtResource("2_3t5l0")
 [node name="Unarmed" parent="Head/Hand" instance=ExtResource("4_jfo8s")]
 
 [node name="HUD" parent="." instance=ExtResource("5_7jv1j")]
+
+[node name="Pause" parent="." instance=ExtResource("5_kjkjd")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

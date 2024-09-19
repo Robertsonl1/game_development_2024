@@ -1,23 +1,28 @@
 extends Node3D
 
 @onready var LightManager = $LightManager.get_children()
+var worldenv = preload("res://scenes/worldenvironment.tres")
 
-var ener
-
+var shadow
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if Global.light == 0:
-		ener = 1
+		shadow = false
+		worldenv.ssil_enabled = false
 		
 	elif Global.light == 1:
-		ener = 10
-	
-	elif Global.light ==2:
-		ener = 10000
+		shadow = true
+		worldenv.ssil_enabled = false
 		
+	elif Global.light ==2:
+		shadow = true
+		worldenv.ssil_enabled = true
+	
+	worldenv.volumetric_fog_enabled = Global.fog
 	lightManage()
 
 func lightManage():
 	for light in LightManager:
-		light.light_energy = ener
+		light.shadow_enabled = shadow
+		

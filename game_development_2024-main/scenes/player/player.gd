@@ -28,6 +28,7 @@ var gravity_vec = Vector3()
 @onready var camera: Camera3D = $Head/Camera3D
 @onready var weapon_manager = $Head/Hand
 @onready var crouch_cast = $CrouchCast3D
+@onready var pause = $Pause
 
 func _ready():
 	# Captures the mouse so it does not go off the end of the screen
@@ -51,7 +52,9 @@ func _input(event):
 					weapon_manager.next_weapon()
 				MOUSE_BUTTON_WHEEL_DOWN:
 					weapon_manager.previous_weapon()
-
+	
+	
+	
 func _physics_process(_delta):
 	process_weapons()
 	process_movement(_delta)
@@ -100,6 +103,10 @@ func process_movement(_delta):
 	
 	move_and_slide()
 
+func escape():
+	if Input.is_action_just_pressed("escape"):
+		pause.show()
+		get_tree().paused = true
 
 func process_weapons():
 	if Input.is_action_just_pressed("empty"):
