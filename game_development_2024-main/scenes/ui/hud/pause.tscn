@@ -1,6 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://bdxsoh4ybs7xt"]
-
-[ext_resource type="Script" path="res://scenes/ui/hud/pause.gd" id="1_uktsk"]
+[gd_scene format=3 uid="uid://bdxsoh4ybs7xt"]
 
 [node name="Pause" type="Control"]
 layout_mode = 3
@@ -9,7 +7,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_uktsk")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1

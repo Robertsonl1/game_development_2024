@@ -33,6 +33,7 @@ var gravity_vec = Vector3()
 func _ready():
 	# Captures the mouse so it does not go off the end of the screen
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	pause.hide()
 
 func _process(_delta):
 	window_activity()
@@ -103,10 +104,16 @@ func process_movement(_delta):
 	
 	move_and_slide()
 
-func escape():
-	if Input.is_action_just_pressed("escape"):
-		pause.show()
-		get_tree().paused = true
+func _unhandled_input(event):
+	if event.is_action_pressed("escape"):
+		if get_tree().paused == false:
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+			pause.show()
+			get_tree().paused = true
+		if get_tree().paused == false:
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+			pause.hide()
+			get_tree().paused = false
 
 func process_weapons():
 	if Input.is_action_just_pressed("empty"):
