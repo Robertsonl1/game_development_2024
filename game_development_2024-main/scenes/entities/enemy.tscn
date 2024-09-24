@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bofnal53genx6"]
+
+[ext_resource type="Script" path="res://scenes/entities/Enemy.gd" id="1_avtup"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_boglj"]
+
+[sub_resource type="TorusMesh" id="TorusMesh_fd3a4"]
+
+[node name="Enemy" type="CharacterBody3D"]
+script = ExtResource("1_avtup")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_boglj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("TorusMesh_fd3a4")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]

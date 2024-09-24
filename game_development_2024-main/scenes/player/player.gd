@@ -106,14 +106,10 @@ func process_movement(_delta):
 
 func _unhandled_input(event):
 	if event.is_action_pressed("escape"):
-		if get_tree().paused == false:
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-			pause.show()
-			get_tree().paused = true
-		if get_tree().paused == false:
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-			pause.hide()
-			get_tree().paused = false
+		get_tree().paused = true
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		pause.show()
+		
 
 func process_weapons():
 	if Input.is_action_just_pressed("empty"):
