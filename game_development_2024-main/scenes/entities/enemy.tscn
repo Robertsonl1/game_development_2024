@@ -1,18 +1,32 @@
-[gd_scene load_steps=4 format=3 uid="uid://bofnal53genx6"]
+[gd_scene load_steps=6 format=3 uid="uid://cgwtmkockpvui"]
 
-[ext_resource type="Script" path="res://scenes/entities/Enemy.gd" id="1_avtup"]
+[ext_resource type="Script" path="res://scenes/entities/enemy.gd" id="1_n8u2d"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_boglj"]
 
-[sub_resource type="TorusMesh" id="TorusMesh_fd3a4"]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_jsjow"]
 
-[node name="Enemy" type="CharacterBody3D"]
-script = ExtResource("1_avtup")
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_fhxf3"]
+states/Start/position = Vector2(275, 100)
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_1juy2"]
+
+[node name="Enemy" type="CharacterBody3D" groups=["enemies"]]
+script = ExtResource("1_n8u2d")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_boglj")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("TorusMesh_fd3a4")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_jsjow")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_fhxf3")
+anim_player = NodePath("../AnimationPlayer")
+parameters/playback = SubResource("AnimationNodeStateMachinePlayback_1juy2")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

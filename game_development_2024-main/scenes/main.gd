@@ -1,5 +1,8 @@
 extends Node3D
 
+
+@onready var player = $Player
+
 @onready var LightManager = $LightManager.get_children()
 var worldenv = preload("res://scenes/worldenvironment.tres")
 
@@ -21,6 +24,9 @@ func _ready():
 	
 	worldenv.volumetric_fog_enabled = Global.fog
 	lightManage()
+
+func _physics_process(_delta):
+	get_tree().call_group("enemies", "update_target_location", player.global_transform.origin)
 
 func lightManage():
 	for light in LightManager:
