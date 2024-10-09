@@ -2,7 +2,8 @@ extends Node
 
 var fog := false
 var light = 1
-
+var postprocessing = 1
+var bob := false
 
 func instantiate_node(packed_scene, pos = null, parent = null):
 	var clone = packed_scene.instantiate()

@@ -2,6 +2,14 @@ extends CharacterBody3D
 
 signal playerdied
 
+const HIT_STAGGER = 8.0
+
+var health = 100
+
+var bob_freq = 0
+var bob_amp = 0
+var t_bob = 0.0
+
 var walkspeed = 15
 var crouchspeed = 5
 var sprintspeed = 15
@@ -30,14 +38,23 @@ var gravity_vec = Vector3()
 @onready var crouch_cast = $CrouchCast3D
 @onready var pause = $Pause
 
+
 func _ready():
 	# Captures the mouse so it does not go off the end of the screen
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	pause.hide()
+	
+	if Global.bob == false:
+		bob_freq = 1.4
+		bob_amp = 0.08
+	else:
+		bob_freq = 0
+		bob_amp = 0
 
 func _process(_delta):
 	window_activity()
-	
+	if health <= 0:
+		get_tree().change_scene_to_file("res://scenes/ui/menu/death_screen.tscn")
 
 func _input(event):
 	# Handles the rotation of the player when the mouse is moved
@@ -89,6 +106,10 @@ func process_movement(_delta):
 		
 	velocity = movement
 	
+	# Head bob
+	t_bob += _delta * velocity.length() * float(is_on_floor())
+	camera.transform.origin = _headbob(t_bob)
+	
 		# Crouching when the crouch key is pressed
 	if Input.is_action_just_pressed("crouch"):
 		if iscrouching == false:
@@ -138,7 +159,18 @@ func process_weapons():
 	# Pickup Weapon
 	weapon_manager.process_weapon_pickup()
 	
-	
+
+func hit(dir):
+	horizontal_velocity += dir * HIT_STAGGER
+	health = health - 10
+	print(health)
+
+
+
+func die():
+	if health <= 0:
+		get_tree().change_scene_to_file("res://scenes/ui/menu/death_screen.tscn")
+
 # To show/hide the cursor
 func window_activity():
 	if Input.is_action_just_pressed("ui_cancel"):
@@ -146,6 +178,14 @@ func window_activity():
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+
+
+func _headbob(time) -> Vector3:
+	var pos = Vector3.ZERO
+	pos.y = sin(time * bob_freq) * bob_amp
+	pos.x = cos(time * bob_freq / 2) * bob_amp
+	return pos
 
 func movementStateChange(changetype):
 	match changetype:

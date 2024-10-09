@@ -1,14 +1,14 @@
-
 extends CharacterBody3D
 
 
 var player = null
 var state_machine
+var health = 100
 
-const SPEED = 4.0
+const SPEED = 8.0
 const ATTACK_RANGE = 2.0
 
-@export var player_path := "/root/Node3D/Player"
+@export var player_path := "/root/World/Map/NavigationRegion3D/Player"
 
 @onready var nav_agent = $NavigationAgent3D
 @onready var anim_tree = $AnimationTree
@@ -50,3 +50,4 @@ func _hit_finished():
 	if global_position.distance_to(player.global_position) < ATTACK_RANGE + 1.0:
 		var dir = global_position.direction_to(player.global_position)
 		player.hit(dir)
+

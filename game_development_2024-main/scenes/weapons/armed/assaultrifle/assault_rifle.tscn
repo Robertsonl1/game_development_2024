@@ -1,17 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://b5ds11qrvkbyu"]
+[gd_scene load_steps=11 format=3 uid="uid://b5ds11qrvkbyu"]
 
 [ext_resource type="Script" path="res://scenes/weapons/armed/assaultrifle/assault_rifle.gd" id="1_6egdm"]
 [ext_resource type="PackedScene" uid="uid://dxy1jvkjx11ib" path="res://scenes/weapons/armed/assaultrifle/assault_riflepickup.tscn" id="2_ei5gv"]
 [ext_resource type="PackedScene" uid="uid://bmfmuai322siw" path="res://scenes/weapons/muzzle_flash.tscn" id="2_sl6ud"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_6ane2"]
-size = Vector3(0.03, 0.22, 0.099)
-
-[sub_resource type="BoxMesh" id="BoxMesh_db04x"]
-size = Vector3(0.032, 0.148, 0.051)
-
-[sub_resource type="BoxMesh" id="BoxMesh_250oj"]
-size = Vector3(0.076, 0.09, 0.478)
+[ext_resource type="PackedScene" uid="uid://dvggvryli4r1o" path="res://data/meshes/assaultrifle.glb" id="4_cqxj7"]
 
 [sub_resource type="Animation" id="Animation_8pbj5"]
 resource_name = "equip"
@@ -208,22 +200,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
 [node name="Body" type="Node3D" parent="Root/Anchor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="Root/Anchor/Body"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.129683, -0.100811)
-mesh = SubResource("BoxMesh_6ane2")
-skeleton = NodePath("../../../..")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Root/Anchor/Body"]
-transform = Transform3D(1, 0, 0, 0, 0.896957, 0.442117, 0, -0.442117, 0.896957, 0, -0.0807101, 0.195126)
-mesh = SubResource("BoxMesh_db04x")
-skeleton = NodePath("../../../..")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Root/Anchor/Body"]
-mesh = SubResource("BoxMesh_250oj")
-skeleton = NodePath("../../../..")
-
 [node name="MuzzleFlash" parent="Root/Anchor/Body" instance=ExtResource("2_sl6ud")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01328e-06, -0.27878)
+
+[node name="Muzzle" type="Node3D" parent="Root/Anchor/Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.26385)
+
+[node name="assaultrifle" parent="Root/Anchor/Body" instance=ExtResource("4_cqxj7")]
+transform = Transform3D(-7.95547e-09, 0, 0.182, 0, 0.182, 0, -0.182, 0, -7.95547e-09, 0, 0, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

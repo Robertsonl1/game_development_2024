@@ -16,6 +16,7 @@ func _enter_tree():
 func _ready():
 	hide_interaction_prompt()
 
+
 func update_weapon_ui(weapon_data, weapon_slot):
 	slot_ui.text = weapon_slot
 	

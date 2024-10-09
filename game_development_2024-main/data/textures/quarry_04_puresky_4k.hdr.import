@@ -3,15 +3,16 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cfeirql627i86"
-path="res://.godot/imported/quarry_04_puresky_4k.hdr-e2ae29baf0ee3135f33cd820f995aa34.ctex"
+path.bptc="res://.godot/imported/quarry_04_puresky_4k.hdr-e2ae29baf0ee3135f33cd820f995aa34.bptc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://data/textures/quarry_04_puresky_4k.hdr"
-dest_files=["res://.godot/imported/quarry_04_puresky_4k.hdr-e2ae29baf0ee3135f33cd820f995aa34.ctex"]
+dest_files=["res://.godot/imported/quarry_04_puresky_4k.hdr-e2ae29baf0ee3135f33cd820f995aa34.bptc.ctex"]
 
 [params]
 

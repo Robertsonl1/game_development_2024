@@ -63,21 +63,6 @@ popup/item_1/id = 1
 popup/item_2/text = "High"
 popup/item_2/id = 2
 
-[node name="Textures" type="Label" parent="VBoxContainer"]
-layout_mode = 2
-text = "Textures"
-
-[node name="OptionButton2" type="OptionButton" parent="VBoxContainer"]
-layout_mode = 2
-item_count = 3
-selected = 1
-popup/item_0/text = "Low"
-popup/item_0/id = 0
-popup/item_1/text = "Medium"
-popup/item_1/id = 1
-popup/item_2/text = "High"
-popup/item_2/id = 2
-
 [node name="PostProcessing" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 text = "Post Processing"
@@ -114,9 +99,9 @@ popup/item_1/id = 1
 popup/item_2/text = "Hard"
 popup/item_2/id = 2
 
-[node name="ScreenShake" type="Label" parent="VBoxContainer"]
+[node name="Head Bob" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "Screen Shake"
+text = "Head Bob"
 
 [node name="CheckBox2" type="CheckBox" parent="VBoxContainer"]
 layout_mode = 2
@@ -129,17 +114,12 @@ text = "Fog Mode"
 [node name="CheckBox" type="CheckBox" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="UiScale" type="Label" parent="VBoxContainer"]
-layout_mode = 2
-text = "User Interface Scale"
-
-[node name="HSlider" type="HSlider" parent="VBoxContainer"]
-layout_mode = 2
-
 [node name="Exit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Exit"
 
 [connection signal="item_selected" from="VBoxContainer/OptionButton" to="." method="_on_option_button_item_selected"]
+[connection signal="item_selected" from="VBoxContainer/OptionButton3" to="." method="_on_option_button_3_item_selected"]
+[connection signal="pressed" from="VBoxContainer/CheckBox2" to="." method="_on_check_box_2_pressed"]
 [connection signal="pressed" from="VBoxContainer/CheckBox" to="." method="_on_check_box_pressed"]
 [connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]
