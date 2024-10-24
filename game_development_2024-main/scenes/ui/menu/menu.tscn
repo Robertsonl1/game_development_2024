@@ -34,7 +34,7 @@ layout_mode = 2
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_l7haj")
 theme_override_font_sizes/font_size = 203
-text = "Opposing Force 2"
+text = "OpPosing Force Ii"
 horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer"]

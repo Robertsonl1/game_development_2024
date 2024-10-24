@@ -31,6 +31,7 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("2_fxwa2")
 theme_override_font_sizes/font_size = 240
 text = "You are dead!"
+horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="VBoxContainer"]
 layout_mode = 2

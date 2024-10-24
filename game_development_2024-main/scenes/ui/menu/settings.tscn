@@ -120,6 +120,7 @@ text = "Exit"
 
 [connection signal="item_selected" from="VBoxContainer/OptionButton" to="." method="_on_option_button_item_selected"]
 [connection signal="item_selected" from="VBoxContainer/OptionButton3" to="." method="_on_option_button_3_item_selected"]
+[connection signal="item_selected" from="VBoxContainer/OptionButton4" to="." method="_on_option_button_4_item_selected"]
 [connection signal="pressed" from="VBoxContainer/CheckBox2" to="." method="_on_check_box_2_pressed"]
 [connection signal="pressed" from="VBoxContainer/CheckBox" to="." method="_on_check_box_pressed"]
 [connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]

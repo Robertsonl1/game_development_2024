@@ -37,13 +37,22 @@ var gravity_vec = Vector3()
 @onready var weapon_manager = $Head/Hand
 @onready var crouch_cast = $CrouchCast3D
 @onready var pause = $Pause
-
+@onready var hud = $HUD
 
 func _ready():
 	# Captures the mouse so it does not go off the end of the screen
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	pause.hide()
 	
+	if Global.difficulty == 0:
+		health = 150
+		
+	elif Global.difficulty == 1:
+		health = 100
+		
+	elif Global.difficulty == 2:
+		health = 50
+		
 	if Global.bob == false:
 		bob_freq = 1.4
 		bob_amp = 0.08
@@ -164,8 +173,6 @@ func hit(dir):
 	horizontal_velocity += dir * HIT_STAGGER
 	health = health - 10
 	print(health)
-
-
 
 func die():
 	if health <= 0:
